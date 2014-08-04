@@ -1,0 +1,78 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<% if current_user %>
+    <div class="container">
+
+    	<div class="col-xs-10 col-sm-7">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron" style="height:425px">
+            <h2><%= current_user.user_name %>'s Profile</h2>
+            <p>&nbsp;</p>
+            <table style="width:100%">
+            <td><p>Name:</p></td>
+            <td colspan="2"><p><%= current_user.first_name %> <%= current_user.last_name %></p></td>
+        	</tr>
+			<tr>
+			<td><p>Email Address:</p></td>
+			<td colspan="2"><p><%= current_user.email %></p></td>
+			</tr>
+			<tr>
+			<td><p>Payment Method:</p></td>
+			<td><p><%= current_user.payment_method %></p></td>
+			<td><a class="btn btn-default" href="/change_payment" role="button">Change &raquo;</a></td>
+			</tr>
+			<tr>
+			<td><p>Joined on:</p></td>
+			<td><p><%= current_user.created_at.to_time.strftime('%e %B %Y') %></p></td>
+			</tr>
+			<tr>
+			<td><p>Password:</p></td>
+			<td><p>************</p></td>
+			<td><a class="btn btn-default" href="CFA1/index.html" role="button">Reset &raquo;</a></td>
+			</tr>
+			</table>     
+          </div>
+        </div>
+
+        <div class="col-xs-8 col-sm-5 sidebar-offcanvas" id="sidebar" role="navigation" >
+          <div class="jumbotron" style="height:425px" align="center">
+          	<p>In the table below you can manage your files and see how much they are earning. If you have decided to earn from your notes money will be credited to a PayPal&reg; account linked with your e-mail. If you need to create an account please go to <a href="https://www.paypal.com/uk/webapps/setup-paypal-account/onboarding?execution=e1s1" target="_blank">PayPal&reg;</a>, if you would like to change your e-mail address please <a href="/contact">contact us</a>.</p>
+          </div>
+        </div>
+        <div class="row">
+        <div class="container">
+        <div class="col-xs-18 col-sm-12 sidebar-offcanvas" id="sidebar" role="navigation" >
+          <div class="jumbotron">
+          	<h2><%= current_user.user_name %>'s Files</h2>
+          </div>
+         </div>
+         </div>
+     </div>
+      </div>
+          
+
+<% else %>
+<div class="container" align="center">
+
+        <%= form_tag login_user_path, :class => 'form-signin', :style => 'width: 30%' do %>
+
+    <h2 class="form-signin-heading" align="center">Please sign in</h2>
+        <p>&nbsp;</p>
+        <p class="form-signin-heading" align="center">You must login to view profiles, not a registered user then please return to <%= link_to 'home', root_url %> or <a href="signup"> register</a>.</p>
+</p>
+        <p  style="color:red"><%= flash[:notice] %><p>
+        <p>&nbsp;</p>
+    <p>
+    <%= text_field_tag(:email, params[:email], class: 'form-control', type: 'email' , placeholder: 'E-mail address' )%>
+    <%= text_field_tag(:password, params[:password], class: 'form-control', type: 'password', placeholder: 'Password') %>
+    </p>
+    <p><%= submit_tag "Sign in", class: "btn btn-lg btn-primary btn-block" %></p>
+<p><%= link_to "forgotten password?", new_password_reset_path %></p>
+    <% end %>
+
+    </div>
+<% end %>

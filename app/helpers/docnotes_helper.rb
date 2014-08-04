@@ -1,0 +1,2 @@
+module DocnotesHelper
+end

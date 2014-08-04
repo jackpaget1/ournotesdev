@@ -34,7 +34,7 @@ gem 'formtastic-bootstrap'
 gem 'simple_form'
 gem 'carrierwave', '~> 0.9'
 gem 'bootstrap-sass', '~> 2.3.2'
-
+gem 'mail_form'
 # Use unicorn as the app server
 # gem 'unicorn'
 

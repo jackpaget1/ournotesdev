@@ -8,7 +8,7 @@
     <h2 class="form-signin-heading" align="center">Please sign in</h2>
         <p>&nbsp;</p>
         <p class="form-signin-heading" align="center">Only uploaders are required to sign in, if you are downloading notes you do not require an account</p>
-        <p  style="color:red"><%= flash[:notice] %><p>
+        <!--<p  style="color:red"><%= flash.now[:error] %><% flash.now[:error] = nil %></p>-->
         <p>&nbsp;</p>
     <p>
     <%= text_field_tag(:email, params[:email], class: 'form-control', type: 'email' , placeholder: 'E-mail address' )%>

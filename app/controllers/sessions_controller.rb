@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
   			redirect_to '/profile'
   		else
   			session[:user_id] = nil
-  			render :action => "new"
-        flash[:notice] = "Wrong e-mail/password combination, please try again"
+        flash.now[:error] = "Wrong e-mail/password combination, please try again"
+        render :action => "new"
 
   		end
   end

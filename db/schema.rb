@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140804193515) do
+ActiveRecord::Schema.define(version: 20140806212829) do
+
+  create_table "categories", force: true do |t|
+    t.string   "type_of_note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "nickname"
+  end
+
+  create_table "categs", force: true do |t|
+    t.string   "category_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contacts", force: true do |t|
     t.datetime "created_at"
@@ -25,6 +38,14 @@ ActiveRecord::Schema.define(version: 20140804193515) do
     t.datetime "updated_at"
   end
 
+  create_table "fields", force: true do |t|
+    t.string   "field_name"
+    t.string   "cat_nick"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "fie"
+  end
+
   create_table "files", force: true do |t|
     t.string   "profile_id"
     t.string   "category"
@@ -34,6 +55,23 @@ ActiveRecord::Schema.define(version: 20140804193515) do
     t.string   "preview_file_name"
     t.string   "price"
     t.string   "downloads"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", force: true do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "profile_id"
+    t.string   "cat"
+    t.integer  "category_id"
+    t.string   "fie"
+  end
+
+  create_table "types", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

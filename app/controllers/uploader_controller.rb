@@ -13,6 +13,7 @@ class UploaderController < ApplicationController
 
 
   def profile
+    @notes = Note.where(:profile_id => current_user.profile_id)
   end
 
   def files

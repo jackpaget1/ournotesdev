@@ -14,10 +14,10 @@
     <%= text_field_tag(:email, params[:email], class: 'form-control', type: 'email' , placeholder: 'E-mail address' )%>
     <%= text_field_tag(:password, params[:password], class: 'form-control', type: 'password', placeholder: 'Password') %>
    
-    <%= label_tag :remember_me %>
-    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+    <p><%= check_box_tag :remember_me, 1, params[:remember_me] %> Remember me</p>
     <p><%= submit_tag "Sign in", class: "btn btn-lg btn-primary btn-block" %></p>
-<p><%= link_to "forgotten password?", new_password_reset_path %></p>
+    <p><a href="signup">register</a></p>
+    <p><%= link_to "forgotten password?", new_password_reset_path %></p>
     <% end %>
 
     </div> <!-- /container -->

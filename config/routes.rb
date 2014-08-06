@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
   
   root :to => 'browse#home'
 
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "about" => "browse#about"
   get "privacy" => "browse#privacy"
 
+  get "/javascripts/dynamic_states" => "javascripts#dynamic_states"
   # finance section 
 
   get "finp" => "fp#landing"
@@ -25,12 +26,12 @@ Rails.application.routes.draw do
 
   get "signup" => "users#new", :as => "signup"
   post "change_payment" => "users#change_payment", :as => "update"
-  get "docnote" => "docnotes#index"
+  get "notes" => "notes#new"
   
   resources :users
   resources :sessions
   resources :password_resets
-  resources :docnotes, only: [:index, :new, :create, :destroy]
+  resources :notes
 
   # Private pages - login required
 

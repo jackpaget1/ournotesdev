@@ -81,8 +81,8 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Uploaders<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                      <% if current_user %>
-                     <li><a href="profile"><%= current_user.first_name %>'s Profile</a></li>
-                     <li><a href="docnote">Upload</li>
+                     <li><a href="/profile"><%= current_user.first_name %>'s Profile</a></li>
+                     <li><a href="/notes">Upload</li>
                     <li> <a href="/logout_user">Logout(<%= current_user.first_name %>)</a></li>
                     <% else %>
                     <li><a href="/login">Login</a> </li>

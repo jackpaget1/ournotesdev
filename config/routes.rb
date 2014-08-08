@@ -1,12 +1,6 @@
 Rails.application.routes.draw do 
   
   root :to => 'browse#home'
-  get 'browse/profile'
-  get 'browse/message'
-  get 'browse/aboutus'
-
- get "update_fields" => "notes#update_fields", :as => "update_fields"
- get "update_qualifications" => "notes#update_qualifications", :as => "update_qualifications"
 
   #Sessions Users
 
@@ -19,7 +13,6 @@ Rails.application.routes.draw do
   get "about" => "browse#about"
   get "privacy" => "browse#privacy"
 
-  get "/javascripts/dynamic_states" => "javascripts#dynamic_states"
   # finance section 
 
   get "finp" => "fp#landing"
@@ -38,6 +31,7 @@ Rails.application.routes.draw do
   # Private pages - login required
 
   get "profile" => "uploader#profile"
+  get "editprofile" => "uploader#edit_profile"
   get "files" => "upload#upload"
   get "change_payment" => "users#change_payment"
 

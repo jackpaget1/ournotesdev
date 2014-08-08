@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808011455) do
+ActiveRecord::Schema.define(version: 20140808174835) do
 
   create_table "categories", force: true do |t|
     t.string   "type_of_note"
@@ -71,7 +71,8 @@ ActiveRecord::Schema.define(version: 20140808011455) do
     t.string   "institute"
     t.string   "grade"
     t.string   "verified"
-    t.string   "price"
+    t.integer  "downloads"
+    t.decimal  "price",       precision: 8, scale: 2
   end
 
   create_table "proffings", force: true do |t|

@@ -3,38 +3,37 @@
 <p>&nbsp;</p>
 
 <% if current_user %>
-    <div class="container">
-
-    	<div class="col-xs-10 col-sm-7">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
-          <div class="jumbotron">
+      <div class="container">
+      <div class="col-xs-10 col-sm-7">
+        <p class="pull-right visible-xs">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+        </p>
+        <div class="jumbotron">
             <h2 align="center">Profile: <%= current_user.first_name %> <%= current_user.last_name %></h2>
             <p>&nbsp;</p>
             <table style="width:100%">
             <td><p>Username:</p></td>
             <td colspan="2"><p><%= current_user.user_name %></p></td>
-        	</tr>
-			<tr>
-			<td><p>Email Address:</p></td>
-			<td colspan="2"><p><%= current_user.email %></p></td>
-			</tr>
-			<tr>
-			<td><p>Payment Method:</p></td>
-			<td><p><%= current_user.payment_method %></p></td>
-			<td><a class="btn btn-default" href="/change_payment" role="button">Change &raquo;</a></td>
-			</tr>
-			<tr>
-			<td><p>Joined on:</p></td>
-			<td><p><%= current_user.created_at.to_time.strftime('%e %B %Y') %></p></td>
-			</tr>
-			<tr>
-			<td><p>Password:</p></td>
-			<td><p>************</p></td>
-			<td><a class="btn btn-default" href="CFA1/index.html" role="button">Reset &raquo;</a></td>
-			</tr>
-			</table>     
+          </tr>
+      <tr>
+      <td><p>Email Address:</p></td>
+      <td colspan="2"><p><%= current_user.email %></p></td>
+      </tr>
+      <tr>
+      <td><p>Payment Method:</p></td>
+      <td><p><%= current_user.payment_method %></p></td>
+      <td><a class="btn btn-default" href="/change_payment" role="button">Change &raquo;</a></td>
+      </tr>
+      <tr>
+      <td><p>Joined on:</p></td>
+      <td><p><%= current_user.created_at.to_time.strftime('%e %B %Y') %></p></td>
+      </tr>
+      <tr>
+      <td><p>Password:</p></td>
+      <td><p>************</p></td>
+      <td><a class="btn btn-default" href="CFA1/index.html" role="button">Reset &raquo;</a></td>
+      </tr>
+      </table>     
           </div>
         </div>
 
@@ -88,14 +87,15 @@
           </div>
         </div>
 
-
+<%if @count == 0 %>
+<p>&nbsp;</p>
+<% else %>
         <div class="row">
         <div class="container">
         <div class="col-xs-18 col-sm-12 sidebar-offcanvas" id="sidebar" role="navigation" >
           <div class="jumbotron">
-          	<h2>Your Files</h2>
+            <h2>Your Files</h2>
             <p>The table below shows your notes and their current status, if you have any queries or want to delete an upload please <a href="/contact">contact us</a>.</p>
-              <p>&nbsp;</p>
             <table class="table table-striped">
   <thead>
     <tr>
@@ -143,7 +143,7 @@
          </div>
      </div>
       </div>
-          
+<% end %>          
 
 <% else %>
 <div class="container" align="center">

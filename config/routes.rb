@@ -1,10 +1,12 @@
 Rails.application.routes.draw do 
   
   root :to => 'browse#home'
-
   get 'browse/profile'
   get 'browse/message'
   get 'browse/aboutus'
+
+ get "update_fields" => "notes#update_fields", :as => "update_fields"
+ get "update_qualifications" => "notes#update_qualifications", :as => "update_qualifications"
 
   #Sessions Users
 

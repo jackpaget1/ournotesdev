@@ -9,14 +9,37 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Angly's Notes</title>
-
+    <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag    "application" %>
     <%= csrf_meta_tags %>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+       $(document).on('page:load', function() {
+    $('#categories_select').change(function() {
+      $.ajax({
+        url: "update_fields",
+        data: {
+          genre_id : $('#categories_select').val()
+        },
+        dataType: "script"
+      });
+    });
+    $('#fields_select').change(function() {
+      $.ajax({
+        url: "update_qualifications",
+        data: {
+          field_id : $('#fields_select').val()
+        },
+        dataType: "script"
+      });
+    });
+  });
+
+
+    </script>
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js">
 
-     $(document).ready(function() {
+     $(document).on('page:load', function() {
         $('#myCarousel').carousel({
         });
     });

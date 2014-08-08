@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806212829) do
+ActiveRecord::Schema.define(version: 20140808011455) do
 
   create_table "categories", force: true do |t|
     t.string   "type_of_note"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "nickname"
   end
 
   create_table "categs", force: true do |t|
@@ -40,10 +39,9 @@ ActiveRecord::Schema.define(version: 20140806212829) do
 
   create_table "fields", force: true do |t|
     t.string   "field_name"
-    t.string   "cat_nick"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fie"
+    t.string   "category_id"
   end
 
   create_table "files", force: true do |t|
@@ -68,10 +66,64 @@ ActiveRecord::Schema.define(version: 20140806212829) do
     t.string   "cat"
     t.integer  "category_id"
     t.string   "fie"
+    t.string   "year"
+    t.string   "title"
+    t.string   "institute"
+    t.string   "grade"
+    t.string   "verified"
+    t.string   "price"
+  end
+
+  create_table "proffings", force: true do |t|
+    t.string   "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "proffints", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profs", force: true do |t|
+    t.string   "field"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "qualifications", force: true do |t|
+    t.string "qual"
+    t.string "category_id"
+    t.string "field_id"
+  end
+
+  create_table "texgs", force: true do |t|
+    t.string   "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "textbs", force: true do |t|
+    t.string   "field"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "unigs", force: true do |t|
+    t.string   "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "univs", force: true do |t|
+    t.string   "field"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -97,6 +149,17 @@ ActiveRecord::Schema.define(version: 20140806212829) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "payment_method",         default: "PayPal"
+  end
+
+  create_table "verifieds", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "years", force: true do |t|
+    t.string   "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -9,14 +9,14 @@ class User < ActiveRecord::Base
 
 	include BCrypt
 
-	attr_accessible :email, :first_name, :last_name, :user_name, :password, :password_confirmation
+	attr_accessible :email, :first_name, :last_name, :user_name, :password, :password_confirmation, :payment_method
 	attr_accessor :password
 	before_save :encrypt_password
-  before_save :create_unique_profile_id
+  before_create :create_unique_profile_id
   before_create { generate_token(:auth_token) }
 
     validates_confirmation_of :password , :message => "Sorry the passwords do not match"
-    validates_presence_of :password, :message => "Please choose a password"
+    validates_presence_of :password, :message => "Please choose a password", :on => :create
   	validates_presence_of :email,:message=>"Please enter your e-mail address"
   	validates_uniqueness_of :email,:message => "This e-mail address is already registered, please login."
   	validates_presence_of :first_name , :message => "Please enter your first name"
@@ -62,6 +62,10 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at = Time.now
     save(validate:false)
     UserMailer.password_reset(self).deliver
+  end
+
+  def send_registration_confirmation
+    UserMailer.registration_confirmation(self).deliver
   end
 
 def generate_token(column)

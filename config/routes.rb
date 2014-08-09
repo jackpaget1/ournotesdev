@@ -2,42 +2,55 @@ Rails.application.routes.draw do
   
   root :to => 'browse#home'
 
-  #Sessions Users
-
-  get "logout_user" => "sessions#destroy", :as => "logout_user"
-  get "login" => "sessions#new"
-  post "login_user" => "sessions#new", :as => "login_user"
+  # MAIN PAGES
 
   get "home" => "browse#home"
   get "terms" => "browse#terms"
   get "about" => "browse#about"
   get "privacy" => "browse#privacy"
 
-  # finance section 
+  ########### - UPLOADS - ###########
 
-  get "finp" => "fp#landing"
+  # SESSIONS
 
-  #Users
+  get "logout_user" => "sessions#destroy", :as => "logout_user"
+  get "login" => "sessions#new"
+  post "login_user" => "sessions#new", :as => "login_user"
+
+  # USERS
 
   get "signup" => "users#new", :as => "signup"
-  post "change_payment" => "users#change_payment", :as => "update"
+
+  # User actions 
+
   get "notes" => "notes#new"
-  
+  get "profile" => "users#profile"
+  get "edit_profile" => "users#edit"
+
+  # CONTACT US
+
+  get "contacts" => "contacts#new", :as => "contact"
+  resources "contacts", only: [:new, :create]
+
+  ########### - DOWNLOADS - ###########
+
+  # PROFESSIONAL EXAM
+
+  # Finance 
+
+  get "finp" => "fp#landing"
+  get "CFA1" => "fp#CFA1"
+
+  # TEXT BOOKS
+
+  # LECTURE NOTES
+
+  ########### - RESOURCES - ###########
+  ########### - DO NOT EDIT - ###########
+
   resources :users
   resources :sessions
   resources :password_resets
   resources :notes
-
-  # Private pages - login required
-
-  get "profile" => "uploader#profile"
-  get "editprofile" => "uploader#edit_profile"
-  get "files" => "upload#upload"
-  get "change_payment" => "users#change_payment"
-
-  # contact form
-
-  get "contacts" => "contacts#new", :as => "contact"
-  resources "contacts", only: [:new, :create]
 
 end

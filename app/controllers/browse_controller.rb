@@ -10,10 +10,4 @@ class BrowseController < ApplicationController
   		redirect_to 'login'
   	end
   end
-
-  def message
-  end
-
-  def aboutus
-  end
 end

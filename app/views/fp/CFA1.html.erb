@@ -1,2 +1,54 @@
-<h1>Fp#CFA1</h1>
-<p>Find me in app/views/fp/CFA1.html.erb</p>
+          <div class="row">
+          <div class="container">
+          <div class="col-xs-18 col-sm-12 sidebar-offcanvas" id="sidebar" role="navigation" >
+          <div class="jumbotron">
+            <h2>Your Files</h2>
+            <p>The table below shows your notes and their current status, if you have any queries or want to delete an upload please <a href="/contact">contact us</a>.</p>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <th width="50%">Description</th>
+                <th width="5%">Year</th>
+                <th width="10%">Status</th>
+                <th width="10%">Price</th>
+                <th width="10%">Downloads</th>
+                <th width="10%">Uploaded</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notes.each do |note| %>
+                  <tr>
+                <td width="50%">
+                  <% if note.cat == "Textbook Notes" %>
+                    Textbook notes from: <%= note.title %> by <%= note.institute %>
+                  <% elsif note.cat == "Lecture Notes" %>
+                    Lecture notes from: <%= note.title %> course at <%= note.institute %>
+                  <% else %>
+                    Notes from the <%= note.title %> exam
+                  <% end %>
+                </td>
+                <td width="5%"> <%= note.year %></td>
+                <td width="10%"> 
+                  <% if note.verified == "1" %>
+                    Verified 
+                  <% else %>
+                    Not Verified 
+                  <% end %>
+                </td>
+                <td width="10%"> 
+                  <% if note.price == 0 %>
+                    Unassigned 
+                  <% else %>
+                    <%= number_to_currency(note.price, unit: "£ ") %> 
+                  <% end %>
+                </td>
+                <td width="10%"><%= note.downloads %></td>
+                <td width="15%"><%= note.created_at.to_time.strftime('%e %b %Y') %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          </div>
+          </div>
+          </div>

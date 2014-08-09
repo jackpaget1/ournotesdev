@@ -1,10 +1,15 @@
 class UploaderController < ApplicationController
 
   def profile
+    # get user's note details
     @notes = Note.where(:profile_id => current_user.profile_id)
+    # count the number of uploads and downloads
     @count = @notes.size
     @downloaded = @notes.sum(:downloads)
-    @averaged = @notes.average(:price)
+    # calculate average price EXCLUDING prices = 0 i.e. notes just uploaded
+    @anotes = @notes.where.not(price: 0)
+    @averaged = @anotes.average(:price)
+    # calculate the total value and the amount earned
     @totalled = @notes.sum(:price)
     @earned = @notes.sum("0.5 * price * downloads")
   end

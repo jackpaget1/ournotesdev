@@ -1,23 +1,24 @@
 <p>&nbsp</p>
 <p>&nbsp</p>
 <p>&nbsp</p>
+
 <div class="container" align="center">
 
 <% if current_user %>
-            <div class="jumbotron">
-                <h1>Already logged!</h1>
-                <p> You are already logged as <%= current_user.user_name %>! You can change your password from your Profile page.</p>
-                <p><a class="btn btn-default" href="/profile" role="button">Profile &raquo;</a>
-                <a class="btn btn-default" href="/logout_user" role="button">Log Out &raquo;</a></p>
-            </div>
-        <% else %>
-<%= form_tag password_resets_path, :method => :post, :class => 'form-signin', :style => 'width: 30%' do %> 
-	<h2 class="form-signin-heading" align="center">Password reset</h2>
-        <p>&nbsp;</p>
-        <p class="form-signin-heading" align="center">Please enter your e-mail and click Reset Password, we will then e-mail you a link to reset your password.</p>
-    <p><%= text_field_tag(:email, params[:email], class: 'form-control' , placeholder: 'E-mail address' ) %></p>
-  	<p><%= submit_tag "Reset Password",class: "btn btn-lg btn-primary btn-block" %></p>
-<% end %>
+    <div class="jumbotron">
+        <h1>Already logged!</h1>
+        <p> You are already logged as <%= current_user.user_name %>! You can change your password from your Profile page.</p>
+        <p><a class="btn btn-default" href="/profile" role="button">Profile &raquo;</a>
+        <a class="btn btn-default" href="/logout_user" role="button">Log Out &raquo;</a></p>
+    </div>
+<% else %>
+        <%= form_tag password_resets_path, :method => :post, :class => 'form-signin', :style => 'width: 30%' do %> 
+	       <h2 class="form-signin-heading" align="center">Password reset</h2>
+            <p>&nbsp;</p>
+            <p class="form-signin-heading" align="center">Please enter your e-mail and click Reset Password, we will then e-mail you a link to reset your password.</p>
+            <p><%= text_field_tag(:email, params[:email], class: 'form-control' , placeholder: 'E-mail address' ) %></p>
+            <p><%= submit_tag "Reset Password",class: "btn btn-lg btn-primary btn-block" %></p>
+        <% end %>
 <% end %>
 
 </div>

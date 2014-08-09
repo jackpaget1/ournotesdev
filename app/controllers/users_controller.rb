@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     @user = User.find_by(params[:profile_id])
     @user.payment_method = 'BOB'
     @user.save
-
   end
 
 end

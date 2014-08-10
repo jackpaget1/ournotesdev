@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809162443) do
+ActiveRecord::Schema.define(version: 20140810190322) do
+
+  create_table "baskets", force: true do |t|
+    t.integer  "price"
+    t.integer  "note_id"
+    t.datetime "completed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "type_of_note"
@@ -98,6 +106,13 @@ ActiveRecord::Schema.define(version: 20140809162443) do
     t.string "qual"
     t.string "category_id"
     t.string "field_id"
+  end
+
+  create_table "sale_texts", force: true do |t|
+    t.string   "title"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "texgs", force: true do |t|

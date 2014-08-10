@@ -1,6 +1,7 @@
 Rails.application.routes.draw do 
   
   root :to => 'browse#home'
+ 
 
   # MAIN PAGES
 
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   get "terms" => "browse#terms"
   get "about" => "browse#about"
   get "privacy" => "browse#privacy"
+
 
   ########### - UPLOADS - ###########
 
@@ -38,8 +40,10 @@ Rails.application.routes.draw do
 
   # Finance 
 
-  get "finp" => "fp#landing"
-  get "CFA1" => "fp#CFA1"
+  get "Finance_pe_landing" => "downloads#Finance_pe_landing"
+  get "Accounting_pe_landing" => "downloads#Accounting_pe_landing"
+  get "Legal_pe_landing" => "fp#Legal_pe_landing"
+  get "Medical_pe_landing" => "fp#Medical_pe_landing"
 
   # TEXT BOOKS
 
@@ -52,5 +56,12 @@ Rails.application.routes.draw do
   resources :sessions
   resources :password_resets
   resources :notes
+  resources :fp
+  resources :downloads
+  resources :previews
+  resources :baskets
 
+  match "/downloads/:type(/:category(/:title(/:uploader)))" => "downloads#new", :via => [:get]
+  match "/preview/:id" => "previews#new", :via => [:get]
+  match "/basket/:id" => "baskets#new", :via => [:get]
 end

@@ -23,5 +23,6 @@ gem 'mongodb'
 gem 'fog'
 gem 'aws-sdk'
 gem 'best_in_place'
+gem 'ransack'
 
 

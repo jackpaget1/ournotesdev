@@ -9,10 +9,9 @@
                 <tr>
                 <th width="50%">Description</th>
                 <th width="5%">Year</th>
-                <th width="10%">Status</th>
                 <th width="10%">Price</th>
-                <th width="10%">Downloads</th>
-                <th width="10%">Uploaded</th>
+                <th width="25%">Uploaded</th>
+                <th width="5%">Downloads</th>
                 </tr>
               </thead>
               <tbody>
@@ -27,27 +26,19 @@
                     Notes from the <%= note.title %> exam
                   <% end %>
                 </td>
-                <td width="5%"> <%= note.year %></td>
+                <td width="5%"><%= note.year %></td>
                 <td width="10%"> 
-                  <% if note.verified == "1" %>
-                    Verified 
-                  <% else %>
-                    Not Verified 
-                  <% end %>
-                </td>
-                <td width="10%"> 
-                  <% if note.price == 0 %>
-                    Unassigned 
-                  <% else %>
                     <%= number_to_currency(note.price, unit: "£ ") %> 
-                  <% end %>
                 </td>
+                <td width="25%"><%= note.uploader %> on <%= note.created_at.to_time.strftime('%e %b %Y') %></td>
                 <td width="10%"><%= note.downloads %></td>
-                <td width="15%"><%= note.created_at.to_time.strftime('%e %b %Y') %></td>
                 </tr>
                 <% end %>
               </tbody>
             </table>
+
+            <h3> Sorry we do not have the notes you are looking for at the moment please try again later </h3>
+
           </div>
           </div>
           </div>

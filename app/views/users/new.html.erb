@@ -4,14 +4,7 @@
     
 <div class="container" align="center">
     <!-- Make sure that users who are logged in cannot sign up again. -->
-        <% if current_user %>
-            <div class="jumbotron">
-                <h1>Already registered!</h1>
-                <p> You are already registered as <%= current_user.user_name %>! You cannot register twice.</p>
-                <p><a class="btn btn-default" href="/profile" role="button">Profile &raquo;</a>
-                <a class="btn btn-default" href="/logout_user" role="button">Log Out &raquo;</a></p>
-            </div>
-        <% else %>
+            
             <%= form_for(@user, :html => {:class => 'form-signin', :style => 'width: 30%'}) do |f|%>
             <h2 class="form-signin-heading" align="center">Register</h2>
             <p>&nbsp;</p>
@@ -39,5 +32,5 @@
         <p><%= f.submit "Register", :class => "btn btn-lg btn-primary btn-block" %></p>
 
         <% end %>
-    <% end %>
+
 </div> 

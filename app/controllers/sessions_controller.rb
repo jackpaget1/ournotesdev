@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  before_filter :authorize, :only => [:new]
+
   def new
   	@user = User.authenticate(params[:email],params[:password])
   		if @user
@@ -21,4 +24,12 @@ class SessionsController < ApplicationController
   		cookies.delete(:auth_token)
   		redirect_to root_url
   end
+private
+
+def authorize
+  if current_user
+    redirect_to '/profile'
+  end
+end
+
 end

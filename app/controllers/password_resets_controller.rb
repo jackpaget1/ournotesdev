@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+
+  before_filter :authorize
   
   def create
   	user = User.find_by_email(params[:email])
@@ -21,6 +23,14 @@ class PasswordResetsController < ApplicationController
   	else
   		render :edit
   	end
+  end
+
+  private
+
+  def authorize
+    if current_user
+      redirect_to '/edit_profile'
+    end
   end
   		
 end

@@ -60,8 +60,14 @@ Rails.application.routes.draw do
   resources :downloads
   resources :previews
   resources :baskets
+  resources :payment_notifications
+
+ get "/payment_notifications/:txn_id/:invoice/:payment_status" => "payment_notifications#create"
 
   match "/downloads/:type(/:category(/:title(/:uploader)))" => "downloads#new", :via => [:get]
-  match "/preview/:id" => "previews#new", :via => [:get]
-  match "/basket/:id" => "baskets#new", :via => [:get]
+  match "/downloads/:id" => "downloads#show", :via => [:post]
+  match "/baskets/:note_id" => "baskets#new", :via => [:get]
+  get "basket" => "baskets#index"
+  get "baskets/pre_checkout" => "baskets#pre_checkout"
+  get "baskets/final/checkout" => "baskets#final_checkout"
 end

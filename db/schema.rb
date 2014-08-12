@@ -11,14 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140810190322) do
+ActiveRecord::Schema.define(version: 20140812003336) do
 
   create_table "baskets", force: true do |t|
-    t.integer  "price"
+    t.integer  "cart_id"
     t.integer  "note_id"
-    t.datetime "completed_at"
+    t.string   "buyer_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "note_title"
+    t.string   "note_uploader"
+    t.string   "note_category"
+    t.string   "note_field"
+    t.decimal  "note_price",    precision: 8, scale: 2
+    t.string   "order_number"
+  end
+
+  create_table "carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "purchased_at"
   end
 
   create_table "categories", force: true do |t|
@@ -84,6 +96,15 @@ ActiveRecord::Schema.define(version: 20140810190322) do
     t.string   "uploader",                            default: "jackpaget"
   end
 
+  create_table "payment_notifications", force: true do |t|
+    t.text     "p_params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "cart_id"
+  end
+
   create_table "proffings", force: true do |t|
     t.string   "grade"
     t.datetime "created_at"
@@ -106,13 +127,6 @@ ActiveRecord::Schema.define(version: 20140810190322) do
     t.string "qual"
     t.string "category_id"
     t.string "field_id"
-  end
-
-  create_table "sale_texts", force: true do |t|
-    t.string   "title"
-    t.text     "message"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "texgs", force: true do |t|

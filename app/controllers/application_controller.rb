@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+ before_filter :current_cart, :items_in_cart
+
   def confirm_logged_in
     unless cookies[:auth_token]
         flash[:notice] = "Please log in"
@@ -25,20 +27,33 @@ def notes_by_downloads(title)
     @notes_count = @notes.size
 end
 
-  helper_method :current_user
 
-  def current_basket
-  if session[:basket_id]
-    @current_basket ||= Basket.find(session[:basket_id])
-    #session[:basket_id] = nil if @current_basket.purchased_at
-  end
-  if session[:basket_id].nil?
-    @current_basket = Basket.create!
-    session[:basket_id] = @current_basket.id
-  end
-  @current_basket
-  end
+def current_cart
 
-  helper_method :current_basket
+  if session[:cart_id]
+    @current_cart = Cart.find(session[:cart_id])
+    if @current_cart.purchased_at
+    session[:cart_id] = nil 
+  end
+  end 
+  
+  if session[:cart_id].nil?
+    @current_cart = Cart.create!
+    session[:cart_id] = @current_cart.id
+  end
+  #@current_cart
+end
+
+def items_in_cart
+  current_cart
+  @items = Basket.where(:cart_id => @current_cart.id)
+  @current_basket_count = @items.size
+  @current_basket_total = @items.sum(:note_price)
+end
+
+helper_method :current_user
+helper_method :current_basket
+helper_method :items_in_cart
+
 
 end

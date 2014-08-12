@@ -97,7 +97,7 @@
                     <li><a href="/downloads/new?category=Arts&type=Lecture+Notes">Arts</a></li>
                   </ul>
                 </li>
-                <li><a href="/basket" role="button" ><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <li><a href="/basket" role="button" ><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;<%=h @current_basket_count %>&nbsp;<% if @current_basket_total == 0%>&nbsp;<% else %>| <%= number_to_currency(@current_basket_total, unit: "£ ") %><% end %></a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
               <li><form class="navbar-form navbar-right">

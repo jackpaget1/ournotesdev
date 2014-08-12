@@ -1,0 +1,69 @@
+<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div class="container">
+    
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h3 align="center"><%= @current_note.title %> <%= @current_note.cat %> Preview</h3>
+            <p align="center"><% if @in_basket %>(In Basket)<% end %></p>
+            <h3 align="center"><%= number_to_currency(@current_note.price, unit: "£ ") %></h3>
+            <p>&nbsp;</p>
+            <p>Uploaded by <%= @current_note.uploader %> on <%= @current_note.created_at.to_time.strftime('%e/%m/%Y') %> and downloaded <%= pluralize(@current_note.downloads, 'time') %>.</p>
+
+            <iframe src="http://docs.google.com/gview?url=<%= @current_note.attachment_url%>&embedded=true" style="width:718px; height:700px;" frameborder="0"></iframe>
+            <p> Uploaded by <%= @current_note.uploader %> on <%= @current_note.created_at.to_time.strftime('%e/%m/%Y') %></p>
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Buy Notes</h2>
+              <p>Click below to buy these notes, you will be re-directed to PayPal&#0153; once the payment is complete we will e-mail the notes to you. </p>
+              <p><a class="btn btn-lg btn-primary" href="/baskets/new?note_id=<%= @current_note.id %>" role="button">Buy Now</a></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Add to Basket</h2>
+              <p>If you want to buy multiple sets of notes then click below to add the notes to your basket, you can then check out with PayPal&#0153; at your convenience with all the notes you've ordered being e-mailled to you instantly. </p>
+              <p><a class="btn btn-lg btn-primary" href="/baskets/new?note_id=<%= @current_note.id %>" role="button">Add to Basket</a></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2><%= @current_note.uploader %>'s Profile</h2>
+              <p><%= @current_note.uploader %> joined Angly's notes in <%=h @joined.to_time.strftime('%Y') %>, 
+              	<% if @current_note.cat == "Professional Exam Notes" %>
+              	they passed there <%= @current_note.title %> exam in <%= @current_note.year %> using these notes.
+              	<% elsif  @current_note.cat == "Lecture Notes"%>
+              	they made these notes for a course on <%= @current_note.title %> taken at <%= @current_note.institute %> in <%= @current_note.year %>. 
+              	<%= @current_note.uploader %> achieved a <%= @current_note.grade %> grade using these notes.
+              	<% elsif @current_note.cat == "Textbook Notes"%>
+              	they made these notes for a <%= @current_note.grade %> in <%= @current_note.year %>.
+              	<% end %>
+              	 </p>
+              <p><a class="btn btn-default" href="/downloads/new?uploader=<%= @current_note.uploader %>" role="button">See More from <%= @current_note.uploader %> &raquo;</a></p>
+            </div><!--/span-->
+            
+          </div><!--/row-->
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+          	<a href="/home" class="list-group-item">Home</a>
+          	<% if current_user %>
+            <a href="/profile" class="list-group-item"><%= current_user.first_name %>'s Profile</a>
+            <% end %>
+            <% if @current_note.cat == "Professional Exam Notes" %>
+            <a href="/downloads/new?title=<%= @current_note.title %>" class="list-group-item"><%= @current_note.title %> Notes</a>
+            <% end %>
+            <a href="/downloads/new?type=<%= @current_note.cat %>&category=<%= @current_note.fie %>" class="list-group-item"><%= @current_note.fie %> <%= @current_note.cat %> </a>
+            <a href="/downloads/new?category=<%= @current_note.fie %>" class="list-group-item"><%= @current_note.fie %> Notes</a>
+            <a href="/downloads/new?uploader=<%= @current_note.uploader %>" class="list-group-item"><%= @current_note.uploader %>'s Notes</a>
+            <%if session[:last_previews_page] %>
+            <%= link_to "Back", session[:last_previews_page], :class => "list-group-item" %>
+            <% end %>
+
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+    </div><!-- /.container -->

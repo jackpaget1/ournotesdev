@@ -1,0 +1,60 @@
+  <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div class="container">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Finance </h1>
+            <h2>Professional Exams</h2>
+            <p>All our notes are from people who have successfully completed the course, save time and money on tutition.</p>
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CFA Level 1</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CFA Level 1 &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Finance', :title => 'CFA Level 1'), :class => "btn btn-default"  %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CFA Level 2</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CFA Level 2 &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Finance', :title => 'CFA Level 2', :uploader => 'jackpaget'), :class => "btn btn-default"  %></p>
+              <p><%= link_to "CFA Level 2 &raquo;".html_safe, new_preview_path(:id => 'TEST') %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CFA Level 3</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CFA Level 3 &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Finance', :title => 'CFA Level 3'), :class => "btn btn-default"  %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CIMA</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CIMA Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Finance', :title => 'CIMA'), :class => "btn btn-default"  %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CII</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CII Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Finance', :title => 'CII'), :class => "btn btn-default"  %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CISI</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CISI Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Finance', :title => 'CISI'), :class => "btn btn-default"  %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <a href="CFA1/index.html" class="list-group-item">CFA Level 1</a>
+            <a href="#" class="list-group-item">CFA Level 2</a>
+            <a href="#" class="list-group-item">CFA Level 3</a>
+            <a href="#" class="list-group-item">CIMA</a>
+            <a href="#" class="list-group-item">CII</a>
+            <a href="#" class="list-group-item">CISI</a>
+            <a href="#" class="list-group-item">Other Relevant Notes</a>
+
+          </div>
+        </div>
+      </div>

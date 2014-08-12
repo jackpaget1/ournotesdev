@@ -1,0 +1,59 @@
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="container">
+	<div class="col-xs-18 col-sm-12">
+		<div class="jumbotron">
+			<% if @current_basket_total == 0%>
+			<%= @current_cart.id %>
+			<p align="center"><% if session[:came_from] %><%= link_to "Continue Browsing".html_safe, session[:came_from], :class => "btn btn-lg btn-primary" %><% else %><a href="#" class="btn btn-lg btn-primary">Continue Browsing</a></p><% end %>
+			<%else%>
+			<table class="table table-striped">
+				<h3 align="center">Your Basket</h3>
+				              <thead>
+                <tr>
+                <th width="50%">Description</th>
+                <th width="30%">Category</th>
+                <th width="10%">Price</th>
+                <th width ="10%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notes_needed.each do |note| %>
+                  <tr>
+                <td width="50%">
+                  <%= note.note_title %> uploaded by <%= note.note_uploader %>
+                </td>
+                <td>
+                	<%= note.note_field %>: <%= note.note_category %>
+                <td width="10%"> 
+                    <%= number_to_currency(note.note_price, unit: "£ ") %>
+                </td>
+                <td>
+                	<a href="#" class="btn btn-default">Remove &raquo;</a>
+                </td>
+                </tr>
+                <% end %>
+                <tr>&nbsp;</tr>
+                <tr>
+                	<td>&nbsp;</td>
+                	<td align="right"><p><b>Total:</b></p></td>
+                	<td><p><b><%= number_to_currency(@total_price, unit: "£ ") %></b></p></td>
+                	<td><p><a href="baskets/pre_checkout" class="btn btn-default"><b>Checkout &raquo;</b></a></p>
+                		</td>
+
+                	</td>
+                </tr>
+              </tbody>
+            </table>
+            <p align="center"><% if session[:came_from] %><%= link_to "Continue to Browse".html_safe, session[:came_from], :class => "btn btn-lg btn-primary" %><% else %><a href="#" class="btn btn-lg btn-primary">Continue to Browse</a></p><% end %>
+            <p align="center"><a href="baskets/pre_checkout" class="btn btn-lg btn-primary">Checkout by PayPal</a></p>
+            <% end %>
+        </div>
+
+
+		</div>
+	</div>
+</div>

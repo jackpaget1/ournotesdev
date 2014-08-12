@@ -1,0 +1,11 @@
+<div class="container" align="center">
+
+<%= form_for(@basket, :html => {:class => 'form-signin', :style => 'width: 30%'}) do |f|%> 
+
+<p><%= f.text_field :buyer_email,  :class=> 'form-control', :type => 'email' , :placeholder => 'Book Title' %>
+ 	<%= f.text_field :confirm_buyer_email,  :class=> 'form-control', :type => 'author', :placeholder => 'Author or Editor'%></p>
+
+ 	<%= f.submit "Register", :class => "btn btn-lg btn-primary btn-block" %></p>
+ <% end %>
+
+</div>

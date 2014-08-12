@@ -1,0 +1,7 @@
+<h3 align="center">Step 1/4</h3>
+<p>&nbsp;</p>
+<p>What type of notes are you uploading?</p>
+<p><%= f.collection_select(:cat, Category.all, :type_of_note, :type_of_note, options ={:prompt => "Type of Notes"}, :class=> 'form-control', :type => 'email' ) %></p>
+
+<p>&nbsp;</p>
+<%= f.submit "Continue >", :class => "btn btn-lg btn-primary btn-block" %>

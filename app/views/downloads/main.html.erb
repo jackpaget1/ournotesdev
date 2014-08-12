@@ -1,0 +1,40 @@
+
+
+<div class="container">
+	<div class="jumbotron">
+		<h3><%=h @header %></h3>
+		<p>&nbsp;</p>
+	<% if @notes_count == 0 %>
+		<h3 align="center">Sorry we do not have any notes at the moment, please try again in the future.</p>
+	<% else %>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <th width="50%">Description</th>
+                <th width="10%">Downloads</th>
+                <th width="10%">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notes.each do |note| %>
+                  <tr>
+                <td width="50%">
+                  <% if note.cat == "Textbook Notes" %>
+                    Textbook notes from: <%= note.title %> by <%= note.institute %> made by <%= note.uploader %> in <%= note.year %>
+                  <% elsif note.cat == "Lecture Notes" %>
+                    Lecture notes from: <%= note.title %> course at <%= note.institute %> made by <%= note.uploader %> in <%= note.year %>
+                  <% else %>
+                    Notes from the <%= note.title %> exam made by <%= note.uploader %> in <%= note.year %>
+                  <% end %>
+                </td>
+                <td width="10%"><b><%= note.downloads %></b></td>
+                <td width="10%"> 
+                    <b><%= number_to_currency(note.price, unit: "£ ") %></b> 
+                </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+    <% end %>
+</div>
+</div>

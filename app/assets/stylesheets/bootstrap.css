@@ -5372,6 +5372,10 @@ button.close {
   background: transparent;
   border: 0;
 }
+.jack-trans {
+    background: transparent;
+    border: none !important;
+}
 .modal-open {
   overflow: hidden;
 }

@@ -47,6 +47,10 @@ class DownloadsController < ApplicationController
 		link_back
 	end
 
+	def search
+
+	end
+
 private
 	def notes_ready(variable)
 		@notes = variable.where(:verified => '1')

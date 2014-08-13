@@ -32,7 +32,7 @@
                     <%= number_to_currency(note.note_price, unit: "£ ") %>
                 </td>
                 <td>
-                	<a href="#" class="btn btn-default">Remove &raquo;</a>
+                	<a href="baskets/remove/<%= note.id %>" class="btn btn-default">Remove &raquo;</a>
                 </td>
                 </tr>
                 <% end %>

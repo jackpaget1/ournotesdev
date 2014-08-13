@@ -27,11 +27,12 @@ class Note < ActiveRecord::Base
 
 
 	def previous_step
-
 		self.current_step = steps[steps.index(current_step)-1]
-
 	end
 
+	def add_downloads 
+
+	end
 
 	def steps
 		%w[type field subject attachment]

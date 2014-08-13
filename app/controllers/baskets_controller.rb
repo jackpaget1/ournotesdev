@@ -54,7 +54,14 @@ class BasketsController < ApplicationController
 		@basket = Basket.where(:cart_id => @current_cart.id).first
 		@notes_needed = Basket.where(:cart_id => @current_cart.id)
 		@total_price = @notes_needed.sum(:note_price)
+		random_string = SecureRandom.hex(12)
+	end
 
+	def remove
+		basket_id = params[:id]
+		@basket = Basket.find_by_id(basket_id)
+		@basket.destroy
+		redirect_to '/basket/'
 	end
 
 end

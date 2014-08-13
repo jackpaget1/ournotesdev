@@ -66,9 +66,9 @@
               <ul class="nav navbar-nav">
                 <li><%= link_to 'Home', root_url %></li>
                 <% if current_user %>
-                <li><a href="notes">Upload</a></li>
+                <li><a href="/notes_upload">Upload</a></li>
                 <% else %>
-                <li><a href="about">About</a></li>
+                <li><a href="/about">About</a></li>
                 <% end %>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notes <span class="caret"></span></a>
@@ -97,19 +97,21 @@
                     <li><a href="/downloads/new?category=Arts&type=Lecture+Notes">Arts</a></li>
                   </ul>
                 </li>
-                <li><a href="/basket" role="button" ><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;<%=h @current_basket_count %>&nbsp;<% if @current_basket_total == 0%>&nbsp;<% else %>| <%= number_to_currency(@current_basket_total, unit: "£ ") %><% end %></a></li>
+                  <li><a href="/basket" role="button" ><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;<%=h @current_basket_count %>&nbsp;<% if @current_basket_total == 0%>&nbsp;<% else %>| <%= number_to_currency(@current_basket_total, unit: "£ ") %><% end %></a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-              <li><form class="navbar-form navbar-right">
-              <a href="#" role="button" ><span class="glyphicon glyphicon-search"></span></a>
-                <input type="text" class="form-control" placeholder="Search for notes...">
-                </form></li>
+                <li class="nav navbar-nav">                 
+                <%= search_form_for @search, :html => { :class => "navbar-form navbar-right"} do |f| %>
+                 <a href="#"  ><span class="glyphicon glyphicon-search"></span></a>
+                <%= f.text_field :title_or_fie_or_cat_or_uploader_cont, :class=> 'form-control', :type => "text" , :placeholder => 'Search Notes ...' %>
+                <a href="#"><%= f.submit nil, :class => "jack-trans"%></a>
+                <% end %></li>
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Uploaders<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                      <% if current_user %>
                      <li><a href="/profile"><%= current_user.first_name %>'s Profile</a></li>
-                     <li><a href="/notes">Upload</li>
+                     <li><a href="/notes_upload">Upload</li>
                     <li> <a href="/logout_user">Logout(<%= current_user.first_name %>)</a></li>
                     <% else %>
                     <li><a href="/login">Login</a> </li>

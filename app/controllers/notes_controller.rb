@@ -3,7 +3,14 @@
 
 class NotesController < ApplicationController
 
-    before_filter :authorize
+    before_filter :authorize, :except => [:index]
+
+    def index
+      session[:last_downloads_page] = request.env['HTTP_REFERER']
+       @full_notes = @search.result
+       @notes = @full_notes.where(:verified => "1")
+       @count = @full_notes.size
+    end
 
     def new
       session[:note_params] ||= {}
@@ -30,6 +37,10 @@ class NotesController < ApplicationController
         session[:note_step] = session[:note_params] = nil
         redirect_to '/profile'
       end
+    end
+
+    def edit
+
     end
 
     private

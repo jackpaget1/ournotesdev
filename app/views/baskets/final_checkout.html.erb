@@ -40,10 +40,14 @@
               </tbody>
             </table>
 
-            <%= link_to "Checkout", @basket.paypal_url(root_url, @current_cart.id, payment_notifications_url) %>
-            
-            <p align="center"><a href="baskets/final/checkout" class="btn btn-lg btn-primary">Confirm and Checkout</a></p>
-            <p align="center"><a href="/baskets" class="btn btn-default">&laquo; Change Order Details</a></p>
+            <%= form_tag "https://www.sandbox.paypal.com/cgi-bin/webscr" do %>
+            <%= hidden_field_tag :cmd, "_s-xclick" %>
+            <%= hidden_field_tag :encrypted, @basket.paypal_url(root_url, @current_cart.id, payment_notifications_url(:secret => "l3uQYFMmkikuRFN")) %>
+            <p align="center"><%= submit_tag "Confirm and Checkout", class: "btn btn-lg btn-primary" %></p>
+                <% end %>
+
+           
+                        <p align="center"><a href="/baskets" class="btn btn-default">&laquo; Change Order Details</a></p>
         </div>
 
 

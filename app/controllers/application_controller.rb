@@ -3,17 +3,24 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
- before_filter :current_cart, :items_in_cart
+ before_filter :current_cart, :items_in_cart, :build_search
 
-  def confirm_logged_in
-    unless cookies[:auth_token]
-        flash[:notice] = "Please log in"
-        redirect_to :root
-        return false
-    else
-        return true
+def confirm_logged_in
+  unless cookies[:auth_token]
+    flash[:notice] = "Please log in"
+    redirect_to :root
+    return false
+  else
+    return true
     end
-	end
+end
+
+def build_search
+
+  @search = Note.search(params[:q])
+ 
+end
+
 
   private
 
@@ -33,7 +40,15 @@ def current_cart
   if session[:cart_id]
     @current_cart = Cart.find(session[:cart_id])
     if @current_cart.purchased_at
-    session[:cart_id] = nil 
+          full_baskets = Basket.where(:cart_id => @current_cart.id)
+          full_baskets.each do |item|
+          note_id = item.note_id
+          note = Note.find_by_id(note_id)
+          new_dl = note.downloads + 1
+          note.update_attributes(:downloads => new_dl)
+        end
+
+       session[:cart_id] = nil
   end
   end 
   

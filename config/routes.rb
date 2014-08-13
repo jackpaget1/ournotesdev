@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   # User actions 
 
-  get "notes" => "notes#new"
+  get "notes_upload" => "notes#new"
   get "profile" => "users#profile"
   get "edit_profile" => "users#edit"
 
@@ -67,7 +67,11 @@ Rails.application.routes.draw do
   match "/downloads/:type(/:category(/:title(/:uploader)))" => "downloads#new", :via => [:get]
   match "/downloads/:id" => "downloads#show", :via => [:post]
   match "/baskets/:note_id" => "baskets#new", :via => [:get]
+
   get "basket" => "baskets#index"
   get "baskets/pre_checkout" => "baskets#pre_checkout"
   get "baskets/final/checkout" => "baskets#final_checkout"
+  get "baskets/remove/:id" => "baskets#remove"
+
+
 end

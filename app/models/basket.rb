@@ -1,13 +1,15 @@
 class Basket < ActiveRecord::Base
 
-	attr_accessible :cart_id, :note_id, :buyer_email, :note_title, :note_uploader, :note_category, :note_price, :note_field, :order_number
-	has_many :notes
 
+	attr_accessible :cart_id, :note_id, :buyer_email, :note_title, :note_uploader, :note_category, :note_price, :note_field, :order_number, :secure_string, :downloaded
+	#has_many :notes
 	before_save { generate_token(:order_number) }
 
 
 def add_to_basket(note_id)
+	
 	Basket.create(:cart_id => @current_cart.id, :note_id => note_id)
+	save
 end
 
 
@@ -15,6 +17,11 @@ def generate_token(column)
   begin
     self[column] = SecureRandom.hex(8)
   end while Basket.exists?(column => self[column])
+end
+
+def send_order_details
+	BasketMailer.order_complete(self).deliver
+
 end
 
 def paypal_url(return_url, cart_id, notify_url)

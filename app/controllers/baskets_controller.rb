@@ -24,7 +24,7 @@ class BasketsController < ApplicationController
 		 	Basket.create(:buyer_email => current_user.email, :cart_id => @current_cart.id, :note_id => @note_id, :note_title => @note_needed.title, :note_uploader => @note_needed.uploader, :note_category => @note_needed.cat, :note_price => @note_needed.price, :note_field => @note_needed.fie)
 		else
 
-		Basket.create(:cart_id => @current_cart.id, :note_id => @note_id, :note_title => @note_needed.title, :note_uploader => @note_needed.uploader, :note_category => @note_needed.cat, :note_price => @note_needed.price, :note_field => @note_needed.fie)
+			Basket.create(:cart_id => @current_cart.id, :note_id => @note_id, :note_title => @note_needed.title, :note_uploader => @note_needed.uploader, :note_category => @note_needed.cat, :note_price => @note_needed.price, :note_field => @note_needed.fie)
 
 	end 
 		if session[:return_to]
@@ -54,7 +54,7 @@ class BasketsController < ApplicationController
 		@basket = Basket.where(:cart_id => @current_cart.id).first
 		@notes_needed = Basket.where(:cart_id => @current_cart.id)
 		@total_price = @notes_needed.sum(:note_price)
-		random_string = SecureRandom.hex(12)
+
 	end
 
 	def remove

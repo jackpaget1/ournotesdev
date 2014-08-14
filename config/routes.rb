@@ -61,17 +61,22 @@ Rails.application.routes.draw do
   resources :previews
   resources :baskets
   resources :payment_notifications
+  resources :secure_downloads
 
- get "/payment_notifications/:txn_id/:invoice/:payment_status" => "payment_notifications#create"
+  get "/payment_notifications/:txn_id/:invoice/:payment_status" => "payment_notifications#create"
 
   match "/downloads/:type(/:category(/:title(/:uploader)))" => "downloads#new", :via => [:get]
   match "/downloads/:id" => "downloads#show", :via => [:post]
   match "/baskets/:note_id" => "baskets#new", :via => [:get]
 
+  get "/secure_downloads/:id" => "secure_downloads#index"
+
   get "basket" => "baskets#index"
   get "baskets/pre_checkout" => "baskets#pre_checkout"
   get "baskets/final/checkout" => "baskets#final_checkout"
   get "baskets/remove/:id" => "baskets#remove"
+
+  get "secure_downloads/new/:id/:type" => "secure_downloads#new"
 
 
 end

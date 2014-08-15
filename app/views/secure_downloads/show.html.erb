@@ -1,0 +1,46 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<%= debug params %>
+
+
+<div class="container">
+	<div class="col-xs-18 col-sm-12">
+		<div class="jumbotron">
+			<table class="table table-striped">
+				<h3 align="center">Your Downloads</h3>
+                <p>&nbsp;</p>
+                <p>Thank you for using Angly's Notes your one time download links for (Order <%= @notifying_basket.order_number %>) are below:</p>
+                <p>&nbsp;</p>
+			    <thead>
+                <tr>
+                <th width="60%">Description</th>
+                <th width="30%">Category</th>
+                <th width="10%">Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notes.each do |note| %>
+                  <tr>
+                <td width="50%">
+                  <%= note.note_title %> uploaded by <%= note.note_uploader %>
+                </td>
+                <td>
+                	<%= note.note_field %>: <%= note.note_category %>
+                <td width="10%"> 
+                    <%= link_to "Download", new_secure_download_path(:id => note.order_number, :type => note.note_id*note.rand), target: "_blank" %>
+                </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+            
+        </div>
+
+
+		</div>
+	</div>
+</div>
+                

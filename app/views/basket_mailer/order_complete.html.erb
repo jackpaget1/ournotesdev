@@ -1,0 +1,45 @@
+<p>Hello,</p>
+<h3 align="center">Order Number: <%= @user.order_number %></h3>
+<p>&nbsp;</p>
+<p>Thank you for ordering notes from Angly's Notes, your order (# <%= @user.order_number %>) has been successfully processed. This e-mail acts as your reciept, to get your notes please follow the link at the bottom of this message. The download link is one time only, if your experience difficulties please <a href="http://ec2-54-201-101-229.us-west-2.compute.amazonaws.com/contact">Contact Us</a> quoting your order number.</p>
+
+<p>&nbsp;</p>
+<div align="center">
+<table width="80%">
+ 	
+                
+			    <thead>
+                <tr>
+                <th width="60%">Description</th>
+                <th width="30%">Category</th>
+                <th width="10%">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @info.each do |info| %>
+                  <tr>
+                <td width="50%">
+                  <%= info.note_title %> uploaded by <%= info.note_uploader %>
+                </td>
+                <td>
+                	<%= info.note_field %>: <%= info.note_category %>
+                <td width="10%"> 
+                    <%= number_to_currency(info.note_price, unit: "£ ") %>
+                </td>
+                </tr>
+                <% end %>
+                <tr><td colspan="3">&nbsp;</td></tr>
+                <tr>
+                	<td>&nbsp;</td>
+                	<td align="right"><p><b>Total:</b></p></td>
+                	<td><p><b><%= number_to_currency(@total_price, unit: "£ ") %></b></p></td>
+                </tr>
+              </tbody>
+            </table>
+</div>
+
+<p>Please <a href="http://ec2-54-201-101-229.us-west-2.compute.amazonaws.com/secure_downloads/<%= @user.order_number%>">click this link</a>, if you have difficulties loading that link please copy and paste this http://ec2-54-201-101-229.us-west-2.compute.amazonaws.com/secure_downloads/<%= @user.order_number%>. Please note that the download link can only be used once.</p>
+
+<p>Enjoy your notes! </p>
+
+<p>Angly's Notes</p>

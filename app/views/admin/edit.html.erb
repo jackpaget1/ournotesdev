@@ -1,0 +1,40 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="container" align="center">
+<table style="width:50%">
+<%= form_for(@note, :html => {:class => 'form-signin'}) do |f|%>
+      <tr>
+        <td colspan="2"><p>  <%= f.text_field :cat, :class => 'form-control'%></p></td>
+      </tr>
+      <tr>
+        <td colspan="2"><p>  <%= f.text_field :fie, :class => 'form-control'%></p></td>
+      </tr>
+      <tr>
+        <td colspan="2"><p>  <%= f.text_field :title, :class => 'form-control'%></p></td>
+      </tr>
+            <tr>
+        <td colspan="2"><p>  <%= f.text_field :year, :class => 'form-control'%></p></td>
+      </tr>
+            <tr>
+        <td colspan="2"><p>  <%= f.text_field :grade, :class => 'form-control'%></p></td>
+      </tr>
+      <tr>
+        <td colspan="2"><p>  <%= f.text_field :institute, :class => 'form-control'%></p></td>
+      </tr>
+      <tr>
+        <td colspan="2"><p><%= f.select :verified, [['Verify', 1], ['Reject', 2]], :class => 'form-control'%></p></td>
+      </tr>
+      <tr>
+        <td><p><%= f.text_field :price, :class => 'form-control'%></p></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= f.submit "Update Note", :class => "btn btn-lg btn-primary btn-block"%></td>
+      </tr>
+      <tr>
+      <td colspan="2"><a href="/admin" class="btn btn-lg btn-primary btn-block">Back</a></td>
+      </tr>
+<% end %>
+</table>
+</div>

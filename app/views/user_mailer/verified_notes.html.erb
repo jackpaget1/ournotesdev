@@ -1,0 +1,11 @@
+<p>Dear <%= @user.first_name %>,</p>
+
+<p>Thank you for uploading your notes to Angly's Notes, we are pleased to inform you that your notes are available for purchase. We will pay you via PayPal 30 days after each download, payments are automatically sent to your registered e-mail address (if you need to sign up for PayPal please click <a href="https://www.paypal.com">here</a>).</p>
+
+<p>Your notes have been priced at <%= number_to_currency(@note.price, unit: "£ ") %> from which you will recieve <%= number_to_currency(0.5*@note.price, unit: "£ ") %>. We reserve the right to amend the prices of the notes from time to time, and will email you if we do. If you have any queries please do not hesitate to <a href="#">contact us</a>.</p>
+
+<p>Now you can sit back and watch the money roll in!</p>
+
+<p>Best Wishes,</p>
+
+Angly's Notes

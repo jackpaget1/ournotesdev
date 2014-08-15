@@ -36,7 +36,6 @@ end
 
 
 def current_cart
-
   if session[:cart_id]
     @current_cart = Cart.find(session[:cart_id])
     if @current_cart.purchased_at

@@ -3,10 +3,10 @@
 
 class NotesController < ApplicationController
 
-    before_filter :authorize, :except => [:index]
+    before_filter :authorize, :except => [:index, :update]
 
     def index
-      session[:last_downloads_page] = request.env['HTTP_REFERER']
+       session[:last_downloads_page] = request.env['HTTP_REFERER']
        @full_notes = @search.result
        @notes = @full_notes.where(:verified => "1")
        @count = @full_notes.size
@@ -41,6 +41,16 @@ class NotesController < ApplicationController
 
     def edit
 
+    end
+
+    def update 
+      @note = Note.find_by_id(session[:note_id])
+      @note.update_attributes(params[:note])
+      @user = User.find_by_user_name(@note.uploader)
+      @user.send_verified_email(@note.id)
+      session[:note_id] = nil
+      redirect_to '/admin'
+      
     end
 
     private

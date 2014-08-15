@@ -3,15 +3,6 @@
 <p>&nbsp;</p>
 
 <div class="container">
-  <% if !@note.errors.empty? %>
-    <div class="alert alert-error">
-       <ul>
-        <% @note.errors.full_messages.values.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-    </div>
-  <% end %>
     <%= form_for(@note, :html => {:class => 'form-signin', :style => 'width: 30%', multipart: true}) do |f| %>
       <h2 align="center">Uploading Notes</h2>
       <p>&nbsp;</p>
@@ -19,7 +10,7 @@
       <%= f.hidden_field :profile_id, :value => current_user.profile_id %>
       <%= f.hidden_field :uploader, :value => current_user.user_name %>
       <%= f.hidden_field :verified, :value => "0" %>
-      <%= f.hidden_field :price, :value => 0.00 %>
+      <%= f.hidden_field :price, :value => 0 %>
       <%= f.hidden_field :downloads, :value => 0 %>
     <% end %>
 </div>

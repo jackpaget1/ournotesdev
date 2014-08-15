@@ -24,9 +24,13 @@
               <p><a class="btn btn-lg btn-primary" href="/baskets/new?note_id=<%= @current_note.id %>" role="button">Buy Now</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Add to Basket</h2>
-              <p>If you want to buy multiple sets of notes then click below to add the notes to your basket, you can then check out with PayPal&#0153; at your convenience with all the notes you've ordered being e-mailled to you instantly. </p>
-              <p><a class="btn btn-lg btn-primary" href="/baskets/new?note_id=<%= @current_note.id %>" role="button">Add to Basket</a></p>
+              <h2>Notes to Sell?</h2>
+              <p>If you want sell your notes on our site then please click below..... </p>
+              <% if current_user %>
+              <p><a class="btn btn-lg btn-primary" href="/upload_notes/" role="button">Upload</a></p>
+              <% else %>
+              <p><a class="btn btn-lg btn-primary" href="/signup" role="button">Register</a></p>
+              <% end %>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2><%= @current_note.uploader %>'s Profile</h2>

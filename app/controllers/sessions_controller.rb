@@ -7,10 +7,18 @@ class SessionsController < ApplicationController
   		if @user
         if params[:remember_me]
           cookies.permanent[:auth_token] = @user.auth_token
+          if @user.email == 'AMA6qiDIc9@kyPIUwJzQa.DpXxqkKBvE'
+            redirect_to '/admin'
+          else
           redirect_to '/profile'
+        end 
         else 
           cookies[:auth_token] = @user.auth_token
+          if @user.email == 'AMA6qiDIc9@kyPIUwJzQa.DpXxqkKBvE'
+            redirect_to '/admin'
+          else
     		  redirect_to '/profile'
+        end
         end
   		else
   			session[:user_id] = nil

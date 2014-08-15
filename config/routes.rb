@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   resources :baskets
   resources :payment_notifications
   resources :secure_downloads
+  resources :admin
 
   get "/payment_notifications/:txn_id/:invoice/:payment_status" => "payment_notifications#create"
 
@@ -77,6 +78,9 @@ Rails.application.routes.draw do
   get "baskets/remove/:id" => "baskets#remove"
 
   get "secure_downloads/new/:id/:type" => "secure_downloads#new"
+  get "/admin" => "admin#index"
+  get "/admin/:id/verify" => "admin#verify"
+
 
 
 end

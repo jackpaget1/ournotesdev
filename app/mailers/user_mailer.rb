@@ -10,4 +10,12 @@ class UserMailer < ActionMailer::Base
   		mail :to => user.email, :subject => "Password Reset"
 	end
 
+	def verified_notes(user, note_id)
+		@user = user
+		@note = Note.find(note_id)
+		mail :to => user.email, :subject => "Notes Verified"
+
+	end
+
+
 end

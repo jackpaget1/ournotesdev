@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
     UserMailer.registration_confirmation(self).deliver
   end
 
+  def send_verified_email(note_id)
+    UserMailer.verified_notes(self, note_id).deliver
+  end
+
 def generate_token(column)
   begin
     self[column] = SecureRandom.urlsafe_base64

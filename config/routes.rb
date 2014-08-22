@@ -42,10 +42,11 @@ Rails.application.routes.draw do
 
   get "Finance_pe_landing" => "downloads#Finance_pe_landing"
   get "Accounting_pe_landing" => "downloads#Accounting_pe_landing"
-  get "Legal_pe_landing" => "fp#Legal_pe_landing"
-  get "Medical_pe_landing" => "fp#Medical_pe_landing"
-
-  # TEXT BOOKS
+  get "Legal_pe_landing" => "downloads#Legal_pe_landing"
+  get "pe_landing" => "downloads#pe_landing"
+  get "univ_landing" => "downloads#univ_landing"
+  get "texb_landing" => "downloads#texb_landing"  
+# TEXT BOOKS
 
   # LECTURE NOTES
 
@@ -67,9 +68,9 @@ Rails.application.routes.draw do
   get "/payment_notifications/:txn_id/:invoice/:payment_status" => "payment_notifications#create"
 
   match "/downloads/:type(/:category(/:title(/:uploader)))" => "downloads#new", :via => [:get]
-  match "/downloads/:id" => "downloads#show", :via => [:post]
+  get "/downloads/:id" => "downloads#show"
   match "/baskets/:note_id" => "baskets#new", :via => [:get]
-
+  get "/downloads/:page/:id" => "downloads#new"
   get "/secure_downloads/:id" => "secure_downloads#index"
 
   get "basket" => "baskets#index"
@@ -80,7 +81,7 @@ Rails.application.routes.draw do
   get "secure_downloads/new/:id/:type" => "secure_downloads#new"
   get "/admin" => "admin#index"
   get "/admin/:id/verify" => "admin#verify"
-
+  get "downloads/download_pdf"
 
 
 end

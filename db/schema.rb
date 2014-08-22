@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814022622) do
+ActiveRecord::Schema.define(version: 20140820230924) do
 
   create_table "baskets", force: true do |t|
     t.integer  "cart_id"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140814022622) do
     t.integer  "downloads"
     t.decimal  "price",       precision: 8, scale: 2
     t.string   "uploader",                            default: "jackpaget"
+    t.string   "filename"
   end
 
   create_table "payment_notifications", force: true do |t|

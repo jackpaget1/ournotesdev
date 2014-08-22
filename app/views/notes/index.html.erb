@@ -43,10 +43,10 @@
                   <a href="/downloads/<%= note.id %>" class="btn btn-default">Preview &raquo;</a>
                 </td>
                 </tr>
-               
+               <% end %>
               </tbody>
             </table>
-            <% end %>
+		<%= paginate @notes %>
 <% end %>
 	</div>
 	</div>

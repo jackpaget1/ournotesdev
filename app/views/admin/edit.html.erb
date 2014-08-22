@@ -29,6 +29,7 @@
       <tr>
         <td><p><%= f.text_field :price, :class => 'form-control'%></p></td>
       </tr>
+	<%= f.hidden_field :filename, :value => @filename %>
       <tr>
         <td colspan="2"><%= f.submit "Update Note", :class => "btn btn-lg btn-primary btn-block"%></td>
       </tr>

@@ -55,16 +55,16 @@ class UsersController < ApplicationController
 
     if @user
       # get user's note details
-      @notes = Note.where(:profile_id => current_user.profile_id)
+      @notes = Note.where(:profile_id => current_user.profile_id).page(params[:page]).per(10)
       # count the number of uploads and downloads
-      @count = @notes.size
-      @downloaded = @notes.sum(:downloads)
+      @count = @notes.all.size
+      @downloaded = @notes.all.sum(:downloads)
       # calculate average price EXCLUDING prices = 0 i.e. notes just uploaded
-      @anotes = @notes.where.not(price: 0)
+      @anotes = @notes.all.where.not(price: 0)
       @averaged = @anotes.average(:price)
       # calculate the total value and the amount earned
-      @totalled = @notes.sum(:price)
-      @earned = @notes.sum("0.5 * price * downloads")
+      @totalled = @notes.all.sum(:price)
+      @earned = @notes.all.sum("0.5 * price * downloads")
     end
   end
 

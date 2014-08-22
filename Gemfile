@@ -25,5 +25,8 @@ gem 'aws-sdk'
 gem 'best_in_place'
 gem 'ransack'
 gem 'aescrypt'
-
-
+gem 'aws-s3'
+gem 's3cp'
+gem 'prawn'
+gem 'pdf-reader'
+gem 'kaminari'

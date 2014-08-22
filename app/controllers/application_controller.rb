@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
- before_filter :current_cart, :items_in_cart, :build_search
+ before_filter :current_cart, :items_in_cart, :build_search, :prepare_for_mobile, :prepare_for_tablet
 
 def confirm_logged_in
   unless cookies[:auth_token]
@@ -24,6 +24,34 @@ end
 
   private
 
+def mobile_device?
+  if session[:mobile_param]
+    session[:mobile_param] == "1"
+  else
+   request.user_agent =~ /iPhone|Blackberry|Symbian|Android/ 
+  end
+end
+
+def tablet_device?
+  if session[:tablet_param]
+    session[:tablet_param] == "1"
+  else
+    request.user_agent =~ /iPad/
+  end
+end
+
+helper_method :mobile_device?
+
+def prepare_for_mobile
+  session[:mobile_param] = params[:mobile]
+  request.format = :mobile if mobile_device?
+end
+
+def prepare_for_tablet
+  session[:tablet_param] = params[:tablet]
+  request.format = :tablet if tablet_device?
+end
+
 def current_user
     @current_user ||= User.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
 end
@@ -39,14 +67,6 @@ def current_cart
   if session[:cart_id]
     @current_cart = Cart.find(session[:cart_id])
     if @current_cart.purchased_at
-          full_baskets = Basket.where(:cart_id => @current_cart.id)
-          full_baskets.each do |item|
-          note_id = item.note_id
-          note = Note.find_by_id(note_id)
-          new_dl = note.downloads + 1
-          note.update_attributes(:downloads => new_dl)
-        end
-
        session[:cart_id] = nil
   end
   end 

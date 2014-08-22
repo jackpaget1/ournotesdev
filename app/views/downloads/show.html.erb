@@ -12,16 +12,16 @@
             <p align="center"><% if @in_basket %>(In Basket)<% end %></p>
             <h3 align="center"><%= number_to_currency(@current_note.price, unit: "£ ") %></h3>
             <p>&nbsp;</p>
-            <p>Uploaded by <%= @current_note.uploader %> on <%= @current_note.created_at.to_time.strftime('%e/%m/%Y') %> and downloaded <%= pluralize(@current_note.downloads, 'time') %>.</p>
-
-            <iframe src="http://docs.google.com/gview?url=<%= @current_note.attachment_url%>&embedded=true" style="width:718px; height:700px;" frameborder="0"></iframe>
-            <p> Uploaded by <%= @current_note.uploader %> on <%= @current_note.created_at.to_time.strftime('%e/%m/%Y') %></p>
+            <p>Uploaded by <%= @current_note.uploader %> on <%= @current_note.created_at.to_time.strftime('%e/%m/%Y') %> and downloaded <%= pluralize(@current_note.downloads, 'time') %>. Please note that due to your bandwidth our previews may not render at their full quality, we e-mail the notes to you once purchased to avoid this issue.</p>
+      
+<iframe src="http://docs.google.com/gview?url=http://notespreview.s3-website-us-west-2.amazonaws.com/preview_<%= @name %>&embedded=true" style="width:100%; height:600px;" frameborder="0"></iframe>
+<p> Uploaded by <%= @current_note.uploader %> on <%= @current_note.created_at.to_time.strftime('%e/%m/%Y') %></p>
           </div>
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Buy Notes</h2>
               <p>Click below to buy these notes, you will be re-directed to PayPal&#0153; once the payment is complete we will e-mail the notes to you. </p>
-              <p><a class="btn btn-lg btn-primary" href="/baskets/new?note_id=<%= @current_note.id %>" role="button">Buy Now</a></p>
+              <p><a class="btn btn-lg btn-primary" href="/baskets/new?note_id=<%= @current_note.id %>" role="button">Add to Basket</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Notes to Sell?</h2>

@@ -10,8 +10,8 @@ CarrierWave.configure do |config|
  
     # Configuration for Amazon S3
     :provider              => 'AWS',
-    :aws_access_key_id     => 'AKIAJSTW3W7GEF5PBWTQ',
-    :aws_secret_access_key => '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',
+    :aws_access_key_id     => '',
+    :aws_secret_access_key => '',
     :region                => 'oregeon'
   }
  

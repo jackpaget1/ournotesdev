@@ -6,41 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    
 
-    <title>Angly's Notes</title>
+    <title>Our Notes</title>
     <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag    "application" %>
     <%= csrf_meta_tags %>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
-       $(document).on('page:load', function() {
-    $('#categories_select').change(function() {
-      $.ajax({
-        url: "update_fields",
-        data: {
-          genre_id : $('#categories_select').val()
-        },
-        dataType: "script"
-      });
-    });
-    $('#fields_select').change(function() {
-      $.ajax({
-        url: "update_qualifications",
-        data: {
-          field_id : $('#fields_select').val()
-        },
-        dataType: "script"
-      });
-    });
-  });
-
-
-    </script>
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js">
 
      $(document).on('page:load', function() {
         $('#myCarousel').carousel({
+	interval: 3000
         });
     });
     </script> 
@@ -60,7 +37,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Angly's Notes</a>
+              <a class="navbar-brand" href="#">Our Notes</a>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
@@ -77,7 +54,6 @@
                     <li><a href="/Finance_pe_landing">Finance</a></li>
                     <li><a href="/Accounting_pe_landing">Accounting</a></li>
                     <li><a href="/Legal_pe_landing">Legal</a></li>
-                    <li><a href="/Medical_pe_landing">Medical</a></li>
                     <li class="divider"></li>
                   <li class="dropdown-header">Textbook Notes</li>
                     <li><a href="/downloads/new?category=Legal&type=Textbook+Notes">Legal</a></li>
@@ -133,7 +109,8 @@
 <hr class="featurette-divider">
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2014 Angly's Notes, Inc. &middot; <a href="/contacts">Contact Us</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="#">Terms</a></p>
+	<p> <%= image_tag('facebook.png')%> <%= image_tag('twitter.png') %> <%= image_tag('googleplus.png')%> <%= image_tag('linkedin.png') %></p>
+        <p>&copy; 2014 Our Notes Ltd. &middot; <a href="/contacts">Contact Us</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
       </footer>
 </div>
     </div>

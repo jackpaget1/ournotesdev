@@ -41,6 +41,7 @@ class DownloadsController < ApplicationController
 
 		@note_id = params[:id]
 		@current_note = Note.find_by_id(@note_id)
+		@name = File.basename(@current_note.attachment.path)
 		@uploader = User.find_by_user_name(@current_note.uploader)
 		@joined = @uploader.created_at
 		#@in_basket = Basket.where(:cart_id => @current_cart.id, :note_id => @current_note.id)
@@ -52,9 +53,10 @@ class DownloadsController < ApplicationController
 	end
 
 private
+
 	def notes_ready(variable)
-		@notes = variable.where(:verified => '1')
-		@notes_count = @notes.size
+		@notes = variable.where(:verified => '1').page(params[:page]).per(2)
+		@notes_count = @notes.all.size
 	end
 
 	def link_back

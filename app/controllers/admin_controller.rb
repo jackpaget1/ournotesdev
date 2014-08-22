@@ -42,6 +42,7 @@ class AdminController < ApplicationController
 		@this_id = params[:id].to_i
 		session[:note_id] = @this_id
 		@note = Note.find_by_id(@this_id)
+		@filename = File.basename(@note.attachment.path)
 		render :edit
 		
 	end

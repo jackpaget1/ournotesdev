@@ -3,13 +3,15 @@
 
 class NotesController < ApplicationController
 
-    before_filter :authorize, :except => [:index, :update]
-
+    before_filter :authorize, :except => [:index]
+    before_filter :admin_auth, :only => [:update]
     def index
        session[:last_downloads_page] = request.env['HTTP_REFERER']
        @full_notes = @search.result
-       @notes = @full_notes.where(:verified => "1")
-       @count = @full_notes.size
+       @full_notes = @full_notes.where(:id => nil) unless params[:q]
+       @check_params = "y" unless params[:q]
+       @notes = @full_notes.where(:verified => "1").page(params[:page]).per(1)
+       @count = @full_notes.all.size
     end
 
     def new
@@ -43,10 +45,48 @@ class NotesController < ApplicationController
 
     end
 
-    def update 
+     def update 
+
       @note = Note.find_by_id(session[:note_id])
-      @note.update_attributes(params[:note])
       @user = User.find_by_user_name(@note.uploader)
+      @note.update_attributes(params[:note])
+
+      @name = File.basename(@note.attachment.path)
+      @preview_full_path = "#{Rails.root}/public/uploads/note/preview/preview_2"+@name
+      @preview_file_path = "#{Rails.root}/public/uploads/note/preview/preview_"+@name
+      stamp = "#{Rails.root}/public/uploads/note/preview/stamp.pdf"
+
+      page_count = PDF::Reader.new(@note.attachment.path).page_count
+
+      template = @note.attachment.path
+      output = "#{Rails.root}/public/uploads/note/preview/preview_"+@name
+
+      Prawn::Document.generate(stamp, page_size: 'A4', bottom_margin: 24) do |pdf|
+          pdf.text_box "Preview of #{@note.title} notes by #{@note.uploader} available on Our Notes", align: :center, valign: :top, size: 14
+          pdf.text_box "Preview of #{@note.title} notes by #{@note.uploader} available on Our Notes", align: :center, valign: :bottom, size: 14
+      end
+
+      system "pdftk #{@note.attachment.path} stamp #{stamp} output #{@preview_full_path}"
+      system "pdftk #{@preview_full_path} cat 1-3 output #{@preview_file_path}"
+
+      # Copy to s3
+      s3 = AWS::S3.new
+
+      key = File.basename(@preview_file_path)
+      s3.buckets['notespreview'].objects[key].write(:file => @preview_file_path)
+      
+      s3 = AWS::S3.new
+      key = File.basename(@note.attachment.path)
+      s3.buckets['securednotes'].objects[key].write(:file => @note.attachment.path)
+
+      FileUtils.rm(@preview_full_path)
+      FileUtils.rm(stamp)
+      FileUtils.rm(@preview_file_path)
+
+      @note.remove_attachment
+      @note.save
+      FileUtils.rm_r("#{Rails.root}/public/uploads/note/attachment/#{@note.id}")
+
       @user.send_verified_email(@note.id)
       session[:note_id] = nil
       redirect_to '/admin'
@@ -59,6 +99,12 @@ class NotesController < ApplicationController
       unless current_user
         redirect_to '/login'
       end
+    end
+
+    def admin_auth
+	unless current_user.email == 'AMA6qiDIc9@kyPIUwJzQa.DpXxqkKBvE'
+		redirect_to root_url
+	end
     end
     
 end

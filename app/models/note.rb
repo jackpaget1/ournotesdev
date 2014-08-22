@@ -1,6 +1,6 @@
 class Note < ActiveRecord::Base
 
-	attr_accessible :name, :attachment, :profile_id, :cat, :fie, :year, :title, :institute, :grade, :verified, :price, :downloads, :uploader
+	attr_accessible :name, :attachment, :profile_id, :cat, :fie, :year, :title, :institute, :grade, :verified, :price, :downloads, :uploader, :filename
 	attr_writer	:current_step
 
 	mount_uploader :attachment, AttachmentUploader
@@ -12,7 +12,7 @@ class Note < ActiveRecord::Base
 	validates_presence_of :year, :if => lambda { |n| n.current_step == "subject"}, :message => "All fields are mandatory"
 	validates_presence_of :grade, :if => lambda { |n| n.current_step == "subject"}, :message => "All fields are mandatory"
 	validates_presence_of :institute, :if => lambda { |n| n.current_step == "subject"}, :message => "All fields are mandatory"
-
+	validates_presence_of :attachment, :if => lambda { |n| n.current_step == "attachment"}, :message => "File Missing"
 	has_many :baskets
 
 	def current_step

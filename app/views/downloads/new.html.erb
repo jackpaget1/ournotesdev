@@ -55,7 +55,8 @@
                 <% end %>
               </tbody>
             </table>
-    <% end %>
+<%= paginate @notes %>    
+<% end %>
 </div>
 </div>
 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
@@ -70,16 +71,15 @@
             	<% else %>
 				<a href="/downloads/new?category=<%=h @category %>&type=<%=h @type %>" class="list-group-item"><%=h @category %> <%=h @type %></a>
 				<% end %>
-				<a href="/downloads/new?type=<%=h @type %>" class="list-group-item"><%=h @type %></a>
 				<a href="/downloads/new?category=<%=h @category %>"class="list-group-item"><%=h @category %> Notes</a>
 			<% elsif @category %>
 				<a href="/pe_landing" class="list-group-item">Professional Exam Notes</a>
-          		<a href="/tb_landing" class="list-group-item">Text Book Notes</a>
-          		<a href="/un_landing" class="list-group-item">University Lecture Notes</a>
+          		<a href="/texb_landing" class="list-group-item">Text Book Notes</a>
+          		<a href="/univ_landing" class="list-group-item">University Lecture Notes</a>
           	<% elsif @uploader %>
-          		<a href="/downloads/prof_landing" class="list-group-item">Professional Exam Notes</a>
-          		<a href="/downloads/texb_landing" class="list-group-item">Text Book Notes</a>
-          		<a href="/downloads/univ_landing" class="list-group-item">University Lecture Notes</a>
+          		<a href="/prof_landing" class="list-group-item">Professional Exam Notes</a>
+          		<a href="/texb_landing" class="list-group-item">Text Book Notes</a>
+          		<a href="/univ_landing" class="list-group-item">University Lecture Notes</a>
           	<% end %>
           		<% if session[:last_downloads_page] %>
           			<%= link_to "Back", session[:last_downloads_page], :class => "list-group-item" %>

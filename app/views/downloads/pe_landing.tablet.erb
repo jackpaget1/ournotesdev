@@ -1,0 +1,50 @@
+  <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div class="container">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Professional Exams </h1>
+            <h2>&nbsp;</h2>
+            <p>We hold a range of professional examination notes from candidates who have recently completed their training, we have divided them into three categories and you can also search for your course.</p>
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Finance</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a href="/Finance_pe_landing" class="btn btn-default">Finance &raquo;</a></p>
+
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Accounting</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a href="/Accounting_pe_landing" class="btn btn-default">Accounting &raquo;</a></p>
+          </div>
+          <div class="row">
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Legal</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a href="/Legal_pe_landing" class="btn btn-default">Legal &raquo;</a></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Insurance</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a href="/Accounting_pe_landing" class="btn btn-default">Insurance &raquo;</a></p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <%= link_to "Back to Home", root_url, :class => "list-group-item"  %>
+            <a href="/Finance_pe_landing" class="list-group-item">Finance Notes</a>
+            <a href="/Accounting_pe_landing" class="list-group-item">Accounting Notes</a>
+            <a href="/Legal_pe_landing" class="list-group-item">Legal Notes</a>
+            <%= link_to "All Professional Exam Notes".html_safe, new_download_path(:type => 'Professional Exam Notes'), :class => "list-group-item"  %>
+          </div>
+        </div>
+      </div>

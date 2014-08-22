@@ -1,0 +1,12 @@
+<div class="container" align="center">
+
+<%= form_for(@basket, :html => {:class => 'form-signin', :style => 'width: 80%'}) do |f|%> 
+<h2 align="center">Your e-mail address</h2>
+      <p>&nbsp;</p>
+      <p>Your notes will be delivered to this address</p>
+<p><%= f.text_field :buyer_email,  :class=> 'form-control',  :placeholder => 'E-mail address' %></p>
+
+ 	<p><%= f.submit "Continue", :class => "btn btn-lg btn-primary btn-block" %></p>
+ <% end %>
+
+</div>

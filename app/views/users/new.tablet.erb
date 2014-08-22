@@ -1,0 +1,36 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+    
+<div class="container" align="center">
+    <!-- Make sure that users who are logged in cannot sign up again. -->
+            
+            <%= form_for(@user, :html => {:class => 'form-signin', :style => 'width: 50%'}) do |f|%>
+            <h2 class="form-signin-heading" align="center">Register</h2>
+            <p>&nbsp;</p>
+            <p class="form-signin-heading" align="center">Only uploaders are required to register, if you are downloading notes you do not require an account</p>
+            <p>&nbsp;</p>
+                <% if @user.errors.any? %>
+                    <div id="error_explanation">
+                    <p><%= pluralize(@user.errors.count, "issue") %> on your form: </p>
+                    <ul>
+                    <% @user.errors.each do |attr,msg| %>
+                        <li><%=msg %></li>
+                    <% end %>
+                    </ul>
+            </div>
+            <% end %>
+        <p>
+        <%= f.text_field :email,  :class=> 'form-control', :type => 'email' , :placeholder => 'E-mail address' %>
+        <%= f.text_field :first_name,  :class => 'form-control', type: 'firstname', :placeholder => 'First name' %>
+        <%= f.text_field :last_name, :class => 'form-control', type: 'firstname', :placeholder => 'Last name' %>
+        <%= f.text_field :user_name,  :class => 'form-control', type: 'firstname', :placeholder => 'Username' %>
+        <%= f.text_field :password,  :class => 'form-control', type: 'passwordmid', :placeholder => 'Password' %>
+        <%= f.text_field :password_confirmation, :class => 'form-control', :type => 'password', :placeholder => 'Confirm password' %>
+        </p>
+        <p>By registering you are confirming that you agree to our <a href="terms">Terms of Use</a></p>
+        <p><%= f.submit "Register", :class => "btn btn-lg btn-primary btn-block" %></p>
+
+        <% end %>
+
+</div> 

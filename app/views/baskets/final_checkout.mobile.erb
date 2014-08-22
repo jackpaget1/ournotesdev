@@ -1,0 +1,46 @@
+<div class="container">
+		<div class="jumbotron">
+			<table class="table table-striped">
+				<h3 align="center">Order Number: <%= @basket.order_number %></h3>
+                <p>&nbsp;</p>
+                <p>Thank you for using Our Notes once checkout is complete the link to the notes you have purchased will be e-mailled to you at <b><%= @basket.buyer_email %></b> if this is not the correct email address please <a href="/basket/pre_checkout"> amend it</a> as notes cannot be resent due to incorrect email addresses. After clicking "Confirm and Checkout" you will be re-directed to PayPal, we will then e-mail the links to you once PayPal confirms the transaction. This process normally takes around 1-2 minutes however please allow up to 2 hours as delivery times are affected by server load.</p>
+                <p>&nbsp;</p>
+			    <thead>
+                <tr>
+                <th width="60%">Description</th>
+                <th width="10%">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notes_needed.each do |note| %>
+                  <tr>
+                <td width="50%">
+                  <%= note.note_title %> uploaded by <%= note.note_uploader %>
+                </td>
+                <td width="10%"> 
+                    <%= number_to_currency(note.note_price, unit: "£") %>
+                </td>
+                </tr>
+                <% end %>
+                <tr>&nbsp;</tr>
+                <tr>
+                	<td align="right"><p><b>Total:</b></p></td>
+                	<td><p><b><%= number_to_currency(@total_price, unit: "£") %></b></p></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <%= form_tag "https://www.sandbox.paypal.com/cgi-bin/webscr" do %>
+            <%= hidden_field_tag :cmd, "_s-xclick" %>
+            <%= hidden_field_tag :encrypted, @basket.paypal_url(root_url, @current_cart.id, payment_notifications_url(:secret => "l3uQYFMmkikuRFN")) %>
+            <p align="center"><%= submit_tag "Confirm and Checkout", class: "btn btn-lg btn-primary" %></p>
+                <% end %>
+
+           
+                        <p align="center"><a href="/baskets" class="btn btn-default">&laquo; Change Order Details</a></p>
+        </div>
+
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,91 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="container">
+	<div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+        <% if @type && @category && @title%>
+          	<h2><%=h @category %> <%=h @type %>: <%=h @title %></h2>
+          	<% elsif @type && @category %>
+          	<h2><%=h @category %> <%=h @type %></h2>
+			<% elsif @category %>
+			<h2><%=h @category %> Notes</h2>
+			<% elsif @uploader %>
+        	<h2><%=h @uploader %>'s Notes</h2>
+			<% else %><h2><%=h @type %></h2>
+		<% end %>
+			
+
+	<% if @notes_count == 0 %>
+		<h3 align="center">Sorry we do not have any notes at the moment, please try again in the future.</p>
+	<% else %>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <th width="60%">Description</th>
+                <th width="10%">Downloads</th>
+                <th width="10%">Price</th>
+                <th width ="20%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notes.each do |note| %>
+                  <tr>
+                <td width="50%">
+                  <% if note.cat == "Textbook Notes" %>
+                   Textbook notes from: <%= note.title %> by <%= note.institute %> made by <%= note.uploader %> in <%= note.year %>
+                  <% elsif note.cat == "Lecture Notes" %>
+                    Lecture notes from: <%= note.title %> course at <%= note.institute %> made by <%= note.uploader %> in <%= note.year %>
+                  <% else %>
+                  	Notes from the <%= note.title %> exam made by <%= note.uploader %> in <%= note.year %>
+                  <% end %>
+                </td>
+                <td width="10%"><b><%= note.downloads %></b></td>
+                <td width="10%"> 
+                    <b><%= number_to_currency(note.price, unit: "£ ") %></b> 
+                </td>
+                <td width="20%">
+                  <a href="/downloads/<%= note.id %>" class="btn btn-default">Preview &raquo;</a>
+                </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+<%= paginate @notes %>
+    <% end %>
+</div>
+</div>
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+          	<a href="/home" class="list-group-item">Back to Home</a>
+          	<% if current_user %>
+          	   <a href="/profile" class="list-group-item"> <%= current_user.first_name %>'s Profile</a>
+            <% end %>
+            <% if @type && @category %>
+            	<% if @type == 'Professional Exam Notes' %>
+            	<a href="/<%= @category %>_pe_landing" class="list-group-item"><%=h @category %> <%=h @type %></a>
+            	<% else %>
+				<a href="/downloads/new?category=<%=h @category %>&type=<%=h @type %>" class="list-group-item"><%=h @category %> <%=h @type %></a>
+				<% end %>
+				<a href="/downloads/new?category=<%=h @category %>"class="list-group-item"><%=h @category %> Notes</a>
+			<% elsif @category %>
+				<a href="/pe_landing" class="list-group-item">Professional Exam Notes</a>
+          		<a href="/texb_landing" class="list-group-item">Text Book Notes</a>
+          		<a href="/univ_landing" class="list-group-item">University Lecture Notes</a>
+          	<% elsif @uploader %>
+          		<a href="/pe_landing" class="list-group-item">Professional Exam Notes</a>
+          		<a href="/texb_landing" class="list-group-item">Text Book Notes</a>
+          		<a href="/univ_landing" class="list-group-item">University Lecture Notes</a>
+          	<% end %>
+          		<% if session[:last_downloads_page] %>
+          			<%= link_to "Back", session[:last_downloads_page], :class => "list-group-item" %>
+          		<% end %>
+
+
+          </div>
+        </div>
+</div>

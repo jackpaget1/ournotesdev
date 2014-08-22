@@ -1,0 +1,10 @@
+<h3 align="center">Step 1/4</h3>
+<p>&nbsp;</p>
+<p>What type of notes are you uploading?</p>
+<p>&nbsp;</p>
+<p align="center">It looks like you are using an iPad you will need the free <a href="https://itunes.apple.com/gb/app/iuploader-free-uploads-downloads/id541315293?mt=8#">iUploader</a> app or an equivalent to upload a pdf.</p>
+<p>&nbsp;</p>
+<p><%= f.collection_select(:cat, Category.all, :type_of_note, :type_of_note, options ={:prompt => "Type of Notes"}, :class=> 'form-control', :type => 'email' ) %></p>
+
+<p>&nbsp;</p>
+<%= f.submit "Continue >", :class => "btn btn-lg btn-primary btn-block" %>

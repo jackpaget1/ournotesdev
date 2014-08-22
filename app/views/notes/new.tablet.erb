@@ -1,0 +1,16 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="container">
+    <%= form_for(@note, :html => {:class => 'form-signin', :style => 'width: 30%', multipart: true}) do |f| %>
+      <h2 align="center">Uploading Notes</h2>
+      <p>&nbsp;</p>
+      <%= render "#{@note.current_step}_step", :f => f %>     
+      <%= f.hidden_field :profile_id, :value => current_user.profile_id %>
+      <%= f.hidden_field :uploader, :value => current_user.user_name %>
+      <%= f.hidden_field :verified, :value => "0" %>
+      <%= f.hidden_field :price, :value => 0 %>
+      <%= f.hidden_field :downloads, :value => 0 %>
+    <% end %>
+</div>

@@ -1,0 +1,41 @@
+  <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div class="container">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Legal </h1>
+            <h2>Professional Exams</h2>
+            <p>All our notes are from people who have successfully completed the course, save time and money on tutition. Our most popular notes are listed below you can search for any course not listed in.</p>
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CPE</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CPE Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Finance', :title => 'CPE'), :class => "btn btn-default"  %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>LPC</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "LPC Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Accounting', :title => 'LPC'), :class => "btn btn-default"  %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Bar Exams</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "Bar Exam Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Law', :title => 'Bar Exam'), :class => "btn btn-default"  %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <%= link_to "Back to Home", root_url, :class => "list-group-item" %>
+            <%= link_to "CPE", new_download_path(:type => 'Professional Exam Notes', :category => 'Legal', :title => 'CPE'), :class => "list-group-item" %>
+            <%= link_to "LPC", new_download_path(:type => 'Professional Exam Notes', :category => 'Legal', :title => 'LPC'), :class => "list-group-item" %>
+            <%= link_to "Bar Exam", new_download_path(:type => 'Professional Exam Notes', :category => 'Legal', :title => 'Bar Exam'), :class => "list-group-item" %>
+            <%= link_to "Other Relevant Notes", new_download_path(:category => 'Legal'), :class => "list-group-item" %>
+          </div>
+        </div>
+      </div>

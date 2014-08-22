@@ -1,0 +1,66 @@
+  <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div class="container">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Textbook Notes</h1>
+            <h2>&nbsp;</h2>
+            <p>Tired of trawling through textbooks trying to summarise them or just want an overview of a book before buying it? Then these notes are for you, all the notes are made by individuals with impressive credentials in the textbook's field.</p>
+          </div>
+          <div class="row">
+             <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Legal</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "Legal &raquo;".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Legal'), :class => "btn btn-default"  %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Accounting/ Finance</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><%= link_to "Accounting &raquo;".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Accounting'), :class => "btn btn-default"  %></p>
+
+            </div>
+          <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Medical</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "Medical &raquo;".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Medical'), :class => "btn btn-default"  %></p>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Humanities/ Social Sciences</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><%= link_to "Humanities &raquo;".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Humanities'), :class => "btn btn-default"  %></p>
+
+            </div>
+          <div class="col-6 col-sm-6 col-lg-4">
+              <h2>STEM</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><%= link_to "Social Sciences &raquo;".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'STEM'), :class => "btn btn-default"  %></p>
+
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>The Arts</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "The Arts &raquo;".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Arts'), :class => "btn btn-default"  %></p>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <%= link_to "Back to Home", root_url, :class => "list-group-item"  %>
+            <%= link_to "Legal".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Legal'), :class => "list-group-item"  %>
+            <%= link_to "Accounting".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Accounting'), :class => "list-group-item"  %>
+            <%= link_to "Finance".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Accounting'), :class => "list-group-item"  %>
+            <%= link_to "Medical".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Medical'), :class => "list-group-item"  %>
+            <%= link_to "Humanities".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Humanities'), :class => "list-group-item"  %>
+            <%= link_to "Social Sciences".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Social Sciences'), :class => "list-group-item"  %>
+            <%= link_to "STEM".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'STEM'), :class => "list-group-item"  %>
+            <%= link_to "The Arts".html_safe, new_download_path(:type => 'Textbook Notes', :category => 'Arts'), :class => "list-group-item"  %>
+          </div>
+        </div>
+      </div>

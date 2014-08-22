@@ -1,0 +1,42 @@
+<%= form_for(@user, :html => {:class => 'form-signin', :style => 'width: 30%'}) do |f|%>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+      <tr>
+        <td><p>Username:</p></td>
+        <td colspan="2"><p> <%= current_user.user_name %></p></td>
+      </tr>
+      <tr>
+        <td><p>E-mail:</p></td>
+        <td colspan="2"><p> <%= f.text_field :email, :class => 'form-control'%></p></td>
+      </tr>
+      <tr>
+        <td><p>Payment Method</p>
+        <td colspan="2"><p><%= f.select :payment_method, [['PayPal', 'PayPal'], ['Charity - Oxfam', 'Charity']], :class => 'form-control'%></p></td>
+      <tr>
+        <td><p>Joined on:</p></td>
+        <td><p><%= current_user.created_at.to_time.strftime('%e %B %Y') %></p></td>
+      </tr>
+      <tr>
+        <td><p>Password:</p></td>
+        <td><p><%= f.text_field :password,  :class => 'form-control', type: 'passwordmid', :placeholder => 'New password' %></p></td>
+      </tr>
+      <tr>
+        <td><p>Password:</p></td>
+        <td><p><%= f.text_field :password_confirmation, :class => 'form-control', :type => 'password', :placeholder => 'Confirm new password' %></p></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td colspan="2"><%= f.submit "Save Changes", :class => "btn btn-lg btn-primary btn-block"%></td>
+      </tr>
+    
+<% end %>
+

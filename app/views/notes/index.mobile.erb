@@ -1,0 +1,51 @@
+<div class="container">
+          <div class="jumbotron">
+            <%= search_form_for @search, :html => { :class => "form-signin", :style => 'width: 100%'} do |f| %>
+               <p><%= f.text_field :title_or_fie_or_cat_or_uploader_cont, :class=> 'form-control', :type => "text" , :placeholder => 'Search Notes ...' %></p>
+                <p align="center"><%= f.submit nil, :class => "btn btn-lg btn-primary"%></p>
+            <% end %>
+          
+          <% if @check_params == "y" %>
+          <p align="center">Search our notes to see if we have what you need.</p>
+          <% else %>
+          	<% if @count == 0 %>
+          		<h3 align="center">Sorry we do not have any notes at the moment that match your search, please try again in the future.</p>
+          	<% else %>
+          	  	<h3>Search Results ... </h3>
+          	  	<p>&nbsp;</p>
+			<table class="table table-striped" width="80%">
+              <thead>
+                <tr>
+                <th>Description</th>
+                <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notes.each do |note| %>
+                  <tr>
+                <td>
+                  <% if note.cat == "Textbook Notes" %>
+                   Textbook notes from: <%= note.title %> by <%= note.institute %> made by <%= note.uploader %> in <%= note.year %></br>
+                   <a href="/downloads/<%= note.id %>" class="btn btn-default">Preview &raquo;</a>
+                  <% elsif note.cat == "Lecture Notes" %>
+                    Lecture notes from: <%= note.title %> course at <%= note.institute %> made by <%= note.uploader %> in <%= note.year %></br>
+                    <a href="/downloads/<%= note.id %>" class="btn btn-default">Preview &raquo;</a>
+                  <% else %>
+                  	Notes from the <%= note.title %> exam made by <%= note.uploader %> in <%= note.year %></br>
+                    <a href="/downloads/<%= note.id %>" class="btn btn-default">Preview &raquo;</a>
+                  <% end %>
+                </td>
+                <td> 
+                    <b><%= number_to_currency(note.price, unit: "£") %></b> 
+                </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+ 	<%= paginate @notes %>          
+<% end %>
+<% end %>
+	</div>
+	</div>
+
+</div>

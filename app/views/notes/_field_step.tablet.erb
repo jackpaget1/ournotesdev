@@ -1,0 +1,15 @@
+	<h3 align="center">Step 2/4</h3>
+	<p>&nbsp;</p>
+	<p align="center">Please select a general field for your notes, this helps us advertise them to prospective purchasers.</p>
+
+<% if @note.cat == "Professional Exam Notes" %>
+	<p><%= f.collection_select(:fie, Prof.all, :field, :field, options ={:prompt => "Field"}, :class=> 'form-control', :type => 'email' ) %></p>
+<% elsif @note.cat == "Textbook Notes" %>
+	<p><%= f.collection_select(:fie, Textb.all, :field, :field, options ={:prompt => "Field"}, :class=> 'form-control', :type => 'email' ) %></p>
+<% elsif @note.cat == "Lecture Notes" %>
+	<p><%= f.collection_select(:fie, Univ.all, :field, :field, options ={:prompt => "Field"}, :class=> 'form-control', :type => 'email' ) %></p>
+<% end %>
+
+	<p>&nbsp;</p>
+<%= f.submit "Continue >", :class => "btn btn-lg btn-primary btn-block" %>
+<%= f.submit "< Back", :name => "back_button",  :class => "btn btn-lg btn-primary btn-block"  %>

@@ -1,0 +1,17 @@
+<p>&nbsp</p>
+<p>&nbsp</p>
+<p>&nbsp</p>
+
+<div class="container" align="center">
+
+
+        <%= form_tag password_resets_path, :method => :post, :class => 'form-signin', :style => 'width: 50%' do %> 
+	       <h2 class="form-signin-heading" align="center">Password reset</h2>
+            <p>&nbsp;</p>
+            <p class="form-signin-heading" align="center">Please enter your e-mail and click Reset Password, we will then e-mail you a link to reset your password.</p>
+            <p><%= text_field_tag(:email, params[:email], class: 'form-control' , placeholder: 'E-mail address' ) %></p>
+            <p><%= submit_tag "Reset Password",class: "btn btn-lg btn-primary btn-block" %></p>
+        <% end %>
+
+
+</div>

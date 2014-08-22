@@ -1,0 +1,50 @@
+  <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <div class="container">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>Accounting/ Insurance</h1>
+            <h2>Professional Exams</h2>
+            <p>All our notes are from people who have successfully completed the course, save time and money on tutition. Our most popular notes are listed below you can search for any course not listed in.</p>
+          </div>
+          
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CIMA</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CIMA Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Finance', :title => 'CIMA'), :class => "btn btn-default"  %></p>
+            </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CII</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CII Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Accounting', :title => 'CII'), :class => "btn btn-default"  %></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>CISI</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><%= link_to "CISI Notes &raquo;".html_safe, new_download_path(:type => 'Professional Exam Notes', :category => 'Accounting', :title => 'CISI'), :class => "btn btn-default"  %></p>
+            </div>
+               <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Finance</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a href="/Finance_pe_landing" class="btn btn-default">Finance &raquo;</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <%= link_to "Back to Home", root_url, :class => "list-group-item" %>
+            <%= link_to "CIMA", new_download_path(:type => 'Professional Exam Notes', :category => 'Accounting', :title => 'CIMA'), :class => "list-group-item" %>
+            <%= link_to "CII", new_download_path(:type => 'Professional Exam Notes', :category => 'Accounting', :title => 'CII'), :class => "list-group-item" %>
+            <%= link_to "CISI", new_download_path(:type => 'Professional Exam Notes', :category => 'Accounting', :title => 'CISI'), :class => "list-group-item" %>
+            <%= link_to "Other Relevant Notes", new_download_path(:category => 'Accounting'), :class => "list-group-item" %>
+          </div>
+        </div>
+        
+      </div>

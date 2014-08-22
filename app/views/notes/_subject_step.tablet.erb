@@ -1,0 +1,32 @@
+<% if @note.cat == "Professional Exam Notes" %>
+	<h3 align="center">Step 3/4</h3>
+	<p>&nbsp;</p>
+	<p align="center">Please provide some details about your notes. All fields are mandatory if you have any queries please do not hesitate to <a href="/contact">contact us.</a></p>
+
+ 	<p><%= f.collection_select(:title, Proffint.all, :title, :title, options ={:prompt => "Exam Taken"}, :class=> 'form-control', :type => 'email' ) %></p>
+ 	<p><%= f.collection_select(:year, Year.all, :year, :year, options ={:prompt => "Year of the exam"}, :class=> 'form-control', :type => 'email' ) %></p>
+ 	<p><%= f.collection_select(:grade, Proffing.all, :grade, :grade, options ={:prompt => "Grade"}, :class=> 'form-control', :type => 'email' ) %></p>
+
+ 	<%= f.hidden_field :institute, :value => "Not Needed"%>
+<% elsif @note.cat == "Textbook Notes" %>
+	<h3 align="center">Step 3/4</h3>
+	<p>&nbsp;</p>
+	<p align="center">Please provide some details about your notes. All fields are mandatory if you have any queries please do not hesitate to <a href="/contact">contact us.</a></p>
+ 	<p><%= f.text_field :title,  :class=> 'form-control', :type => 'email' , :placeholder => 'Book Title' %>
+ 	<%= f.text_field :institute,  :class=> 'form-control', :type => 'author', :placeholder => 'Author or Editor'%></p>
+ 	<p><%= f.collection_select(:year, Year.all, :year, :year, options ={:prompt => "Year notes made"}, :class=> 'form-control', :type => 'email' ) %></p>
+  	<p><%= f.collection_select(:grade, Texg.all, :grade, :grade, options ={:prompt => "Notes made for"}, :class=> 'form-control', :type => 'email' ) %></p>
+<% elsif @note.cat == "Lecture Notes" %>
+	<h3 align="center">Step 3/4</h3>
+	<p>&nbsp;</p>
+	<p align="center">Please provide some details about your notes. All fields are mandatory if you have any queries please do not hesitate to <a href="/contact">contact us.</a></p>
+	<p><%= f.text_field :title,  :class=> 'form-control', :type => 'email' , :placeholder => 'Course Title' %>
+ 	<%= f.text_field :institute,  :class=> 'form-control', :type => 'author' , :placeholder => 'University' %></p>
+  	<p><%= f.collection_select(:year, Year.all, :year, :year, options ={:prompt => "Year notes made"}, :class=> 'form-control', :type => 'email' ) %></p>
+ 	<p><%= f.collection_select(:grade, Unig.all, :grade, :grade, options ={:prompt => "Grade for the course"}, :class=> 'form-control', :type => 'email' ) %></p>
+<% end %>
+
+<p>&nbsp;</p>
+
+<%= f.submit "Continue >", :class => "btn btn-lg btn-primary btn-block" %>
+<%= f.submit "< Back", :name => "back_button",  :class => "btn btn-lg btn-primary btn-block"  %>

@@ -1,0 +1,30 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div container>
+  <%= form_for(@contact, :html => { :class => 'form-message', :style => 'width: 100%' }) do |f| %>
+    <h2 class="form-signin-heading" align="center">Contact Us</h2>
+    <p>&nbsp;</p>
+    <p class="form-signin-heading" align="center">To contact us please complete the form below, we will respond within 72 hours. If your form is successfully sent you will be re-directed to our home page.</p>
+      <% if current_user %>
+        <%= f.hidden_field :c_name, :value => current_user.user_name %>
+        <%= f.hidden_field :c_email, :value => current_user.email %>
+        <%= f.text_area :message, :as => :text, :required => true, :class=> 'form-control', :placeholder => 'Message'%>
+      <% else %>
+        <p><%= f.text_field :c_name, :required => true, :class=> 'form-control', :type => 'email' , :placeholder => 'Name' %>
+        <%= f.text_field :c_email, :required => true, :class=> 'form-control', :type => 'author' , :placeholder => 'E-mail address' %></p>
+        <%= f.text_area :message, :as => :text, :required => true, :class=> 'form-control' , :placeholder => 'Message'%>
+      <% end %>
+    <div class= "hidden">
+    <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+    </div>
+    <div>
+      </br>
+        <p class="form-signin-heading" align="center">After clicking submit you should be re-directed to our home page, if not please make sure all fields are completed.</p>
+        <p>&nbsp;</p>
+      <%= f.submit "Submit", :class => "btn btn-lg btn-primary btn-block"  %>
+    </div>
+  <% end %>
+</div>
+

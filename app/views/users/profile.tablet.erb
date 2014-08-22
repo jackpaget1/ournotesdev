@@ -1,0 +1,165 @@
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<div class="container">
+  <div class="col-xs-10 col-sm-7">
+  <p class="pull-right visible-xs">
+  <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+  </p>
+    <div class="jumbotron">
+      <h2 align="center">Profile: <%= current_user.first_name %> <%= current_user.last_name %></h2>
+      <p>&nbsp;</p>
+      <table style="width:100%">
+        <tr>
+        <td><p>Username:</p></td>
+        <td colspan="2"><p><%= current_user.user_name %></p></td>
+        </tr>
+        <tr>
+        <td><p>Email Address:</p></td>
+        <td colspan="2"><p><%= current_user.email %></p></td>
+        </tr>
+        <tr>
+        <td><p>Payment Method:</p></td>
+        <td><p><%= current_user.payment_method %></p></td>
+        <td><p>&nbsp;</p></td>
+        </tr>
+        <tr>
+        <td><p>Joined on:</p></td>
+        <td><p><%= current_user.created_at.to_time.strftime('%e %B %Y') %></p></td>
+        </tr>
+        <tr>
+        <td><p>Password:</p></td>
+        <td><p>************</p></td>
+        <td><a class="btn btn-default" href="edit_profile" role="button">Edit Profile &raquo;</a></td>
+        </tr>
+      </table>     
+    </div>
+  </div>
+
+  <div class="col-xs-8 col-sm-5 sidebar-offcanvas" id="sidebar" role="navigation" >
+    <div class="jumbotron" align="center">
+      <h2>Statistics</h2>
+      <p>&nbsp;</p>
+      <table style="width:100%">
+        <% if @count == 0 %>
+          <tr>
+          <td width="50%"><p>Uploads:</p></td>
+          <td align="center"><p>None</p></td>
+          </tr>
+          <tr>
+          <td><p>Downloads:</p></td>
+          <td align="center" ><p>NA</p></td>
+          </tr>
+          <tr>
+          <td><p>Earned:</p></td>
+          <td align="center" ><p>NA</p></td>
+          </tr>
+          <tr>
+          <td><p>Average value:</p></td>
+          <td align="center" ><p>NA</p></td>
+          </tr>
+          <tr>
+          <td><p>Total value:</p></td>
+          <td align="center"><p>NA</p></td>
+          </tr>
+        <% else %>
+          <tr>
+          <td width="50%"><p>Uploads:</p></td>
+          <td align="center"><p><%=h @count %></p></td>
+          </tr>
+          <tr>
+          <td><p>Downloads:</p></td>
+          <td align="center" ><p><%=h @downloaded %></p></td>
+          </tr>
+          <tr>
+          <td><p>Earned:</p></td>
+          <% if @earned == 0 %>
+            <td align="center" ><p>NA</p></td>
+          <% else %>
+            <td align="center" ><p><%= number_to_currency(@earned, unit: "£ ") %></p></td>
+          <% end %>
+          </tr>
+          <tr>
+          <td><p>Average value:</p></td>
+          <% if @earned == 0 %>
+            <td align="center" ><p>NA</p></td>
+          <% else %>
+            <td align="center" ><p><%= number_to_currency(@averaged, unit: "£ ") %></p></td>
+          <% end %>
+          </tr>
+          <tr>
+          <td><p>Total value:</p></td>
+          <% if @earned == 0 %>
+            <td align="center" ><p>NA</p></td>
+          <% else %>
+            <td align="center"><p><%= number_to_currency(@totalled, unit: "£ ") %></p></td>
+          <% end %>
+          </tr>
+        <% end %>
+      </table> 
+    </div>
+  </div>
+
+        <%if @count == 0 %>
+          <p>&nbsp;</p>
+        <% else %>
+          <div class="row">
+          <div class="container">
+          <div class="col-xs-18 col-sm-12 sidebar-offcanvas" id="sidebar" role="navigation" >
+          <div class="jumbotron">
+            <h2>Your Files</h2>
+            <p>The table below shows your notes and their current status, if you have any queries or want to delete an upload please <a href="/contact">contact us</a>.</p>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <th width="50%">Description</th>
+                <th width="5%">Year</th>
+                <th width="10%">Status</th>
+                <th width="10%">Price</th>
+                <th width="10%">Downloads</th>
+                <th width="15%">Uploaded</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @notes.each do |note| %>
+                  <tr>
+                <td width="50%">
+                  <% if note.cat == "Textbook Notes" %>
+                    Textbook notes from: <%= note.title %> by <%= note.institute %>
+                  <% elsif note.cat == "Lecture Notes" %>
+                    Lecture notes from: <%= note.title %> course at <%= note.institute %>
+                  <% else %>
+                    Notes from the <%= note.title %> exam
+                  <% end %>
+                </td>
+                <td width="5%"> <%= note.year %></td>
+                <td width="10%"> 
+                  <% if note.verified == "1" %>
+                    Verified 
+                  <% else %>
+                    Not Verified 
+                  <% end %>
+                </td>
+                <td width="10%"> 
+                  <% if note.price == 0 %>
+                    Unassigned 
+                  <% else %>
+                    <%= number_to_currency(note.price, unit: "£ ") %> 
+                  <% end %>
+                </td>
+                <td width="10%"><%= note.downloads %></td>
+                <td width="15%"><%= note.created_at.to_time.strftime('%e %b %Y') %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+	<%= paginate @notes %>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+        <% end %>          
+  </div>

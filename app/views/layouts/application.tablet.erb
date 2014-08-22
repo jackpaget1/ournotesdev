@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Our Notes</title>
+    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= csrf_meta_tags %>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+       $(document).on('page:load', function() {
+    $('#categories_select').change(function() {
+      $.ajax({
+        url: "update_fields",
+        data: {
+          genre_id : $('#categories_select').val()
+        },
+        dataType: "script"
+      });
+    });
+    $('#fields_select').change(function() {
+      $.ajax({
+        url: "update_qualifications",
+        data: {
+          field_id : $('#fields_select').val()
+        },
+        dataType: "script"
+      });
+    });
+  });
+
+
+    </script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js">
+
+     $(document).on('page:load', function() {
+        $('#myCarousel').carousel({
+          interval: 3000
+        });
+    });
+    </script> 
+
+  </head>
+
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/home">Our Notes</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notes <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                  <li class="dropdown-header">Professional Exam Notes</li>
+                    <li><a href="/Finance_pe_landing">Finance</a></li>
+                    <li><a href="/Accounting_pe_landing">Accounting</a></li>
+                    <li><a href="/Legal_pe_landing">Legal</a></li>
+                    <li class="divider"></li>
+                  <li class="dropdown-header">Textbook Notes</li>
+                    <li><a href="/downloads/new?category=Legal&type=Textbook+Notes">Legal</a></li>
+                    <li><a href="/downloads/new?category=Accounting&type=Textbook+Notes">Accounting/Finance</a></li>
+                    <li><a href="/downloads/new?category=Medical&type=Textbook+Notes">Medical</a></li>
+                    <li><a href="/downloads/new?category=Social+Sciences&type=Textbook+Notes">Social Sciences</a></li>
+                    <li><a href="/downloads/new?category=Humanities&type=Textbook+Notes">Humanities</a></li>
+                    <li><a href="/downloads/new?category=Arts&type=Textbook+Notes">Arts</a></li>
+                    <li><a href="/downloads/new?category=STEM&type=Textbook+Notes">STEM</a></li>
+                    <li class="divider"></li>
+                  <li class="dropdown-header">University Lecture Notes</li>
+                    <li><a href="/downloads/new?category=Natural+Sciences&type=Lecture+Notes">Natural Sciences</a></li>
+                    <li><a href="/downloads/new?category=Mathematics&type=Lecture+Notes">Mathematics</a></li>
+                    <li><a href="/downloads/new?category=Engineering&type=Lecture+Notes">Engineering</a></li>
+                    <li><a href="/downloads/new?category=Humanities&type=Lecture+Notes">Humanities</a></li>
+                    <li><a href="/downloads/new?category=Social+Sciences&type=Lecture+Notes">Social Sciences</a></li>
+                    <li><a href="/downloads/new?category=Arts&type=Lecture+Notes">Arts</a></li>
+                  </ul>
+                </li>
+                  <li><a href="/basket" role="button" ><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;<%=h @current_basket_count %>&nbsp;<% if @current_basket_total == 0%>&nbsp;<% else %>| <%= number_to_currency(@current_basket_total, unit: "£ ") %><% end %></a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="nav navbar-nav">                 
+                <%= search_form_for @search, :html => { :class => "navbar-form navbar-right"} do |f| %>
+                 <a href="#"  ><span class="glyphicon glyphicon-search"></span></a>
+                <%= f.text_field :title_or_fie_or_cat_or_uploader_cont, :class=> 'form-control', :type => "text" , :placeholder => 'Search Notes ...' %>
+                <a href="#"><%= f.submit nil, :class => "jack-trans"%></a>
+                <% end %></li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Uploaders<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                     <% if current_user %>
+                     <li><a href="/profile"><%= current_user.first_name %>'s Profile</a></li>
+                     <li><a href="/notes_upload">Upload</li>
+                    <li> <a href="/logout_user">Logout(<%= current_user.first_name %>)</a></li>
+                    <% else %>
+                    <li><a href="/login">Login</a> </li>
+                    <li><a href="/signup">Register</a></li>
+              <% end %>
+              </ul>
+     
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+ <%= yield %>
+
+    <div class="container marketing">
+
+<hr class="featurette-divider">
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2014 Angly's Notes Ltd (iPad Site). &middot; <a href="/contacts">Contact Us</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+      </footer>
+</div>
+    </div>
+    
+  </body>
+</html>

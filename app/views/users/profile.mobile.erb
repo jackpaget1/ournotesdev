@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="jumbotron">
+      <h2 align="center">Profile:</h2>
+      <h2 align="center"> <%= current_user.first_name %> <%= current_user.last_name %></h2>
+      <p>&nbsp;</p>
+      <table style="width:100%">
+        <tr ><p align="center">Username:</p></tr>
+        <tr align="center"><p align="center"><b><%= current_user.user_name %></b></p></tr>
+        <tr align="center"><p align="center">Email Address:</p></tr>
+        <tr align="center"><p align="center"><b><%= current_user.email %></b></p></tr>
+        <tr align="center"><p align="center">Payment Method:</p></tr>
+        <tr align="center"><p align="center"><b><%= current_user.payment_method %></b></p></tr>
+      </table> 
+      <p>&nbsp;</p>  
+      <p align="center">On our mobile site only limited information is available, please visit our site from a tablet or computer for full functionality.</p>  
+    </div>
+   <div class="jumbotron" align="center">
+      <h2>Key Statistics</h2>
+      <p>&nbsp;</p>
+      <table style="width:100%">
+        <% if @count == 0 %>
+          <tr>
+          <td width="50%"><p>Uploads:</p></td>
+          <td align="center"><p>None</p></td>
+          </tr>
+          <tr>
+          <td><p>Downloads:</p></td>
+          <td align="center" ><p>NA</p></td>
+          </tr>
+          <tr>
+          <td><p>Earned:</p></td>
+          <td align="center" ><p>NA</p></td>
+          </tr>
+        <% else %>
+          <tr>
+          <td width="50%"><p>Uploads:</p></td>
+          <td align="center"><p><%=h @count %></p></td>
+          </tr>
+          <tr>
+          <td><p>Downloads:</p></td>
+          <td align="center" ><p><%=h @downloaded %></p></td>
+          </tr>
+          <tr>
+          <td><p>Earned:</p></td>
+          <% if @earned == 0 %>
+            <td align="center" ><p>NA</p></td>
+          <% else %>
+            <td align="center" ><p><%= number_to_currency(@earned, unit: "£ ") %></p></td>
+          <% end %>
+          </tr>
+        <% end %>
+      </table> 
+    </div>
+  </div>
